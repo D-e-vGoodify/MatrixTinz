@@ -1,0 +1,59 @@
+/* font-family: Abel */
+@font-face {
+  font-family: Abel;
+  src: url(./fonts/Abel/Abel-Regular.ttf);
+}
+
+/* font-family: Barlow */
+@font-face {
+  font-family: Barlow;
+  src: url(./fonts/Barlow/Barlow-Light.ttf);
+}
+
+/* font-family: Josefin */
+@font-face {
+  font-family: Josefin;
+  src: url(./fonts/Josefin_Sans/static/JosefinSans-Medium.ttf);
+}
+
+/* font-family: Montserrat */
+@font-face {
+  font-family: Montserrat;
+  src: url(./fonts/Montserrat/static/Montserrat-Regular.ttf);
+}
+
+/* font-family: Open */
+@font-face {
+  font-family: Open;
+  src: url(./fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf);
+}
+
+/* font-family: Digital */
+@font-face {
+  font-family: Digital;
+  src: url(./fonts/digital-7/digital-7.ttf);
+}
+
+/* font-family: GoogleSans */
+@font-face {
+  font-family: GoogleSans;
+  src: url(./fonts/Google_Sans_Code/static/GoogleSansCode-Regular.ttf);
+}
+
+/* font-family: Dotty */
+@font-face {
+  font-family: Dotty;
+  src: url(./fonts/dotty/dotty/dotty.ttf);
+}
+
+/* font-family: Orbitron */
+@font-face {
+  font-family: Orbitron;
+  src: url(./fonts/Orbitron/static/Orbitron-Regular.ttf);
+}
+
+/* font-family: Tiny */
+@font-face {
+  font-family: Tiny;
+  src: url(./fonts/tiny5/Tiny5-CRTRegular.ttf);
+}

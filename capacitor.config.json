@@ -1,0 +1,26 @@
+{
+  "appId": "com.goodify.matrixtinz.app",
+  "appName": "MatrixTinz",
+  "webDir": "dist",
+  "overlaysWebView": false,
+  "server": {
+    "cleartext": true
+  },
+
+  "plugins": {
+    "SplashScreen": {
+      "launchDuration": 3000,
+      "backdroundColor": "#ffffff",
+      "androidScaleType": "CENTER_CROP"
+    }
+  },
+
+  "android": {
+    "versionCode": 2,
+    "versionName": "1.0"
+  },
+  "ios": {
+    "buildNumber": 2,
+    "bundleShortVersionString": "1.0"
+  }
+}

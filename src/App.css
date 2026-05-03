@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+@import './fonts.css';
+@import './Colours.css';
+
+@theme {
+  /* fonts */
+  --font-abel: 'Abel', 'sans-serif';
+  --font-open: 'Open', 'sans-serif';
+  --font-barlow: 'Barlow', 'sans-serif';
+  --font-josefin: 'Josefin', 'sans-serif';
+  --font-montserrat: 'Montserrat', 'sans-serif';
+  --font-digital: 'Digital', 'sans-serif';
+  --font-googleSans: 'GoogleSans', 'sans-serif';
+  --font-dotty: 'Dotty', 'sans-serif';
+  --font-orbitron: 'Orbitron', 'sans-serif';
+  --font-tiny: 'Tiny', 'sans-serif';
+  --font-system: sans-serif, system-ui, -apple-system;
+
+  --color-gray: #3f4954;
+  --color-light: #686666da;
+
+  --color-success: #2dd55b;
+  --color-warning: #ffc409;
+  --color-danger: #c5000f;
+
+  --color-app-lightest: var(--color-main-lightest);
+  --color-app-lighter: var(--color-main-lighter);
+  --color-app-light: var(--color-main-light);
+  --color-app-dark: var(--color-main-dark);
+  --color-app-darker: var(--color-main-darker);
+  --color-app-darkest: var(--color-main-darkest);
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@variant abel (&:where(.abel, .abel *));
+@variant open (&:where(.open, .open *));
+@variant barlow (&:where(.barlow, .barlow *));
+@variant josefin (&:where(.josefin, .josefin *));
+@variant montserrat (&:where(.montserrat, .montserrat *));
+@variant digital (&:where(.digital, .digital *));
+@variant googleSans (&:where(.googleSans, .googleSans *));
+@variant dotty (&:where(.dotty, .dotty *));
+@variant orbitron (&:where(.orbitron, .orbitron *));
+@variant tiny (&:where(.tiny, .tiny *));
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#lightIcon {
+  display: initial;
+  cursor: pointer;
+}
+
+.dark .displayBox #lightIcon {
+  display: none;
+}
+
+#darkIcon {
+  display: none;
+  cursor: pointer;
+}
+
+.dark .displayBox #darkIcon {
+  display: initial;
+}
+
+.inputBox {
+  grid-gap: .5rem;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  justify-content: center;
+  max-width: 100%;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.inputBox.more {
+  grid-template-columns: repeat(5, minmax(55px, 1fr));
+}
+
+.inputBox button {
+  background: var(--color-app-lighter);
+  box-shadow: inset 0 5px 1px 0 rgba(0, 0, 0, 0.1),
+  0 5px 5px rgba(0, 0, 0, 0.1),
+  0 -3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.dark .inputBox button {
+  background: var(--color-app-darker);
+  box-shadow: inset 0 5px 1px 0 rgba(0, 0, 0, 0.35),
+  0 5px 5px rgba(0, 0, 0, 0.5),
+  0 -3px 5px rgba(0, 0, 0, 0.35);
+}
+
+.inputBox button:active {
+  background: var(--color-app-lightest);
+  box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+  inset 0 5px 5px rgba(0, 0, 0, 0.1),
+  inset 0 -3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.dark .inputBox button:active {
+  background: var(--color-app-darkest);
+  box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.35),
+  inset 0 5px 5px rgba(0, 0, 0, 0.5),
+  inset 0 -3px 5px rgba(0, 0, 0, 0.35);
+}
+
+/*.themeBox #toggleBlur .indicator {
+  background: linear-gradient(to bottom, var(--color-app-lightest), var(--color-app-lightest));
+}*/

@@ -1,0 +1,53 @@
+:root {
+    --color-main-lightest: #DAE9F2;
+    --color-main-lighter: #B8DEF7;
+    --color-main-light: #85C4EE;
+    --color-main-dark: #0F5C91;
+    --color-main-darker: #06436C;
+    --color-main-darkest: #002640;
+}
+
+.green {
+    --color-main-lightest: #DAF0DA;
+    --color-main-lighter: #B7F7B7;
+    --color-main-light: #85ED85;
+    --color-main-dark: #0F910F;
+    --color-main-darker: #066B06;
+    --color-main-darkest: #004000;
+}
+
+.yellow {
+    --color-main-lightest: #F2EEDA;
+    --color-main-lighter: #F5EAB5;
+    --color-main-light: #E6D581;
+    --color-main-dark: #957F11;
+    --color-main-darker: #6E5B08;
+    --color-main-darkest: #403501;
+}
+
+.red {
+    --color-main-lightest: #FCE8E8;
+    --color-main-lighter: #F8B4B4;
+    --color-main-light: #F07575;
+    --color-main-dark: #C92A2A;
+    --color-main-darker: #961B1B;
+    --color-main-darkest: #540B0B;
+}
+
+.purple {
+    --color-main-lightest: #F3E8FC;
+    --color-main-lighter: #D8B4F8;
+    --color-main-light: #B175F0;
+    --color-main-dark: #672AC9;
+    --color-main-darker: #4A1B96;
+    --color-main-darkest: #2B0B54;
+}
+
+.orange {
+    --color-main-lightest: #FCF0E8;
+    --color-main-lighter: #F8CDB4;
+    --color-main-light: #F09E75;
+    --color-main-dark: #C9612A;
+    --color-main-darker: #96421B;
+    --color-main-darkest: #54220B;
+}
