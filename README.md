@@ -1,8 +1,11 @@
-# React + Vite
+# MatrixTinz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A FOSS modern androi app, made to bring an appealing experience to your calculations 😄
+There's a [website](https://matrixtinz.web.app) also, although the website is firebase made so its not completely open-soure, but that's just for the website, the app is indeed FOSS
 
-Currently, two official plugins are available:
+COMING SOON on F-Droid! 🎉
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Other Info:
+
+- [Github](https://github.com/D-e-vGoodify/MatrixTinz)
+- [Developer's Github](https://github.com/D-e-vGoodify)

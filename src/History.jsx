@@ -143,6 +143,10 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                     <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> setHistory(false)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} />
                 </div>
             :
+                <></>
+            }
+            <div className="relative w-full grid gap-2 md:gap-3 grid-cols-[auto] text-app-darkest dark:text-app-lightest px-4 pb-4 mx-auto">{historyItems}</div>
+            {isWeb ?
                 <div className="sticky bottom-0 left-0 w-full h-12 flex justify-end pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                     <FontAwesomeIcon icon={faTrashCan} className={`text-lg pr-5 cursor-pointer`} onClick={()=> {
                         triggerHaptic();
@@ -150,8 +154,9 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                         setShoWarning(true)
                     }} />
                 </div>
+            :
+                <></>
             }
-            <div className="relative w-full grid gap-2 md:gap-3 grid-cols-[auto] text-app-darkest dark:text-app-lightest px-4 pb-4 mx-auto">{historyItems}</div>
             {contextMenu.show && (
                 <div className={`${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"} absolute w-32 md:w-37 py-2 motion-preset-slide-down-right-sm z-50 bg-app-lightest dark:bg-app-darkest border border-gray-700 dark:border-white rounded-lg shadow-xl overflow-hidden`} style={{ top: contextMenu.y, left: contextMenu.x }}>
                     <button className="w-9/10 px-1 py-2 duration-300 hover:backdrop-brightness-90 dark:hover:backdrop-brightness-125 rounded-lg" onClick={() => {
