@@ -114,7 +114,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
     return (
         <div className={`extraBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter overflow-hidden`}>
             <div className={`flex w-[200%] h-full transition-transform duration-500 ease-in-out ${showAbout ? "-translate-x-1/2" : "translate-x-0"}`}>
-                <div className="relative w-1/2 h-full">
+                <div className="relative w-1/2 min-h-full overflow-y-auto">
                     <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-center gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                         <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>Settings</h1>
                         {isNative ?
@@ -318,7 +318,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                             isWeb ? document.getElementById('aboutBox') : document.body
                         )}
                     </div>
-                    <div className={`absolute bottom-0 w-full h-10 ${showFDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
+                    <div className={`absolute bottom-0 w-full ${isNative ? 'h-15' : 'h-10'} ${showFDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
                         <span className="text-sm md:text-lg text-app-darker">{isNative ? <IonIcon icon={informationCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} /> : <FontAwesomeIcon icon={faInfoCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} />} Coming Soon...</span>
                     </div>
                 </div>

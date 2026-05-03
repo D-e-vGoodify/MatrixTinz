@@ -651,13 +651,13 @@ function App() {
 
   return (
     <main className={`relative h-screen flex justify-center items-center gap-10 ${isNative ? "pt-[calc(7rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))]" : "" } overflow-hidden`} onClick={() => setContextMenu({ show:false, x: 0, y: 0, selectedItem: null })}>
-      <div className={`${isThemes || (isHistory && isWeb) || isExtra ? "md:motion-preset-slide-left md:motion-duration-500" : ""} relative w-full max-w-md min-w-[320px] sm:h-full sm:max-h-[600px] max-sm:h-screen ${isWeb ? "border border-gray-700 dark:border-white rounded-xl" : ""}`}>
+      <div className={`${isThemes || (isHistory && isWeb) || isExtra ? "md:motion-preset-slide-left md:motion-duration-500" : ""} relative w-full max-w-md min-w-[320px] sm:h-full sm:max-h-[600px] max-sm:h-screen ${isWeb ? "md:border border-gray-700 dark:border-white rounded-xl" : ""}`}>
         <Display input={input} setInput={setAllowedKeys} setInputRef={setInputRef} getVisualLength={getVisualLength} useDefKeys={findArrayIndex} calculationArr={calculationArr} answer={answer} setThemes={setIsThemes} setHistory={setIsHistory} setExtra={setIsExtra} showResult={showResult} setShowResult={minResult} />
         <Input setInput={handleInput} moreKey={moreKey} invKey={invKey} isDeg={isDeg} />
       </div>
       {
         isThemes ?
-          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
             <Themes setThemes={setIsThemes} isBlue={isBlue} setIsBlue={setIsBlue} isGreen={isGreen} setIsGreen={setIsGreen} isYellow={isYellow} setIsYellow={setIsYellow} isRed={isRed} setIsRed={setIsRed} isPurple={isPurple} setIsPurple={setIsPurple} isOrange={isOrange} setIsOrange={setIsOrange} isAbel={isAbel} setIsAbel={setIsAbel} isOpen={isOpen} setIsOpen={setIsOpen} isBarlow={isBarlow} setIsBarlow={setIsBarlow} isJosefin={isJosefin} setIsJosefin={setIsJosefin} isMontserrat={isMontserrat} setIsMontserrat={setIsMontserrat} isDigital={isDigital} setIsDigital={setIsDigital} isGoogleSans={isGoogleSans} setIsGoogleSans={setIsGoogleSans} isDotty={isDotty} setIsDotty={setIsDotty} isOrbitron={isOrbitron} setIsOrbitron={setIsOrbitron} isTiny={isTiny} setIsTiny={setIsTiny} systemFont={systemFont} separateFont={separateFont} />
           </div>
         :
@@ -665,7 +665,7 @@ function App() {
       }
       {
         (isHistory && isWeb) || isNative ?
-          <div className={`history relative max-sm:fixed bottom-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
+          <div className={`history relative max-sm:fixed bottom-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
             <History theHistory={isHistory} setHistory={setIsHistory} setDefHistory={setDefHistory} setInput={setInput} setCalculationArr={setCalculationArr} calculations={defHistory} contextMenu={contextMenu} setContextMenu={setContextMenu} separateFont={separateFont} />
           </div>
           :
@@ -673,7 +673,7 @@ function App() {
       }
       {
         isExtra ?
-          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
             <Extra setExtra={setIsExtra} isContinue={isContinue} setContinue={setIsContinue} isSmart={continueSmart} setSmart={setContinueSmart} isFreshStart={isStartFresh} setFreshStart={setIsStartFresh} systemFont={systemFont} setSystemFont={setSystemFont} separateFont={separateFont} setSeparateFont={setSeparateFont} checkFont={checkFont} isdarkMode={isDarkMode} isblue={isBlue} isgreen={isGreen} isyellow={isYellow} isred={isRed} ispurple={isPurple} />
           </div>
         :

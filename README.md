@@ -1,7 +1,7 @@
 # MatrixTinz
 
-A FOSS modern androi app, made to bring an appealing experience to your calculations 😄
-There's a [website](https://matrixtinz.web.app) also, although the website is firebase made so its not completely open-soure, but that's just for the website, the app is indeed FOSS
+A FOSS modern android app, made to bring an appealing experience of calculating 😄
+There's also a [website](https://matrixtinz.web.app), although the website is made with firebase so its not completely open-source, but that's just for the website, the app is indeed FOSS
 
 COMING SOON on F-Droid! 🎉
 
