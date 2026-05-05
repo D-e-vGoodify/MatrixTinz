@@ -17,19 +17,41 @@ There's also a [website](https://matrixtinz.web.app), although the website is ma
 <details>
 <summary><b>🛠️ Project Architecture Details</b></summary>
 <br>
-<b>Programming Languages/Tools used:</b>
+<h3><b>Programming Languages/Tools used:</b></h3>
+<br>
+<hr>
 <ul>
   <li>
     <a href="https://react.dev/">
-      <img src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" alt="React" height="20" />
+      <img src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" alt="React" height="40" />
+    </a>
+  </li>
+  <li>
+    <a href="https://vitejs.dev/">
+      <img src="https://img.shields.io/badge/Vite-646CFF.svg?logo=vite&logoColor=white" alt="Vite" height="40" />
+    </a>
+  </li>
+  <li>
+    <a href="https://capacitorjs.com/">
+      <img src="https://img.shields.io/badge/CapacitorJs-3880FF.svg?logo=capacitor&logoColor=white" alt="Capacitor" height="40" />
+    </a>
+  </li>
+  <li>
+    <a href="https://ionicframework.com/">
+      <img src="https://img.shields.io/badge/Ionic-3880FF.svg?logo=ionic&logoColor=white" alt="Ionic" height="40" />
+    </a>
+  </li>
+  <li>
+    <a href="https://tailwindcss.com/">
+      <img src="https://img.shields.io/badge/Tailwind_CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white" alt="TailwindCSS" height="40" />
+    </a>
+  </li>
+  <li>
+    <a href="https://nodejs.org/">
+      <img src="https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=white" alt="NodeJs" height="40" />
     </a>
   </li>
 </ul>
-- [![Vite](https://img.shields.io/badge/Vite-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
-- [![Capacitor](https://img.shields.io/badge/CapacitorJs-3880FF.svg?logo=capacitor&logoColor=white)](https://capacitorjs.com/)
-- [![Ionic](https://img.shields.io/badge/Ionic-3880FF.svg?logo=ionic&logoColor=white)](https://ionicframework.com/)
-- [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-- [![Node.js](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
 <br>
 This calculator uses the MERN/Capacitor stack to interact directly with the device's native window manager.
