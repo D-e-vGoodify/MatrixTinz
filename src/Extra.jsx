@@ -10,15 +10,13 @@ import { Browser } from '@capacitor/browser';
 import { IonIcon } from '@ionic/react';
 import { closeCircle, chevronDown, chevronForward, informationCircle, chevronUp, arrowBackCircle, logoGithub, wallet, logoBitcoin, copyOutline } from 'ionicons/icons';
 
-const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshStart, setFreshStart, systemFont, setSystemFont, separateFont, setSeparateFont, checkFont, isdarkMode, isblue, isgreen, isyellow, isred, ispurple}) => {
+const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshStart, setFreshStart, systemFont, setSystemFont, separateFont, setSeparateFont, checkFont, showAbout, setShowAbout, isdarkMode, isblue, isgreen, isyellow, isred, ispurple, showSupport, setShowSupport, animateOut, animateBack}) => {
     const platform = Capacitor.getPlatform();
     const isNative = platform === 'ios' || platform === 'android';
     const isWeb = platform === 'web';
-    const [showAbout, setShowAbout] = useState(false);
     const [showFDroid, setShowFDroid] = useState(false);
     const [dropDown, setDropDown] = useState(false);
     const [imgSrc, setImgSrc] = useState("https://github.com/D-e-vGoodify.png");
-    const [showSupport, setShowSupport] = useState(false);
     const [expandCrypto, setExpandCrypto] = useState(false);
     const donateRef = useRef(null);
 
@@ -107,7 +105,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
 
     const handleClickOutside = (e) => {
         if (donateRef.current && !donateRef.current.contains(e.target)) {
-            setShowSupport(false)
+            animateBack();
         }
     }
 
@@ -118,9 +116,9 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                     <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-center gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                         <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>Settings</h1>
                         {isNative ?
-                            <IonIcon icon={closeCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> setExtra(false)} />
+                            <IonIcon icon={closeCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> animateBack()} />
                         :
-                            <FontAwesomeIcon icon={faXmarkCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> setExtra(false)} />       
+                            <FontAwesomeIcon icon={faXmarkCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> animateBack()} />       
                         }
                     </div>
                     <div className="relative w-full grid gap-5 grid-cols-[auto] text-app-darkest dark:text-app-lightest px-4 mx-auto">
@@ -196,12 +194,12 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                     {isNative ?
                             <IonIcon icon={arrowBackCircle} className="absolute top-7 left-9 text-2xl md:text-lg cursor-pointer" onClick={()=> {
                                 triggerHaptic();
-                                setShowAbout(false)
+                                animateBack();
                             }} />
                     :
                             <FontAwesomeIcon icon={faArrowAltCircleLeft} className="absolute top-7 left-9 text-2xl md:text-lg cursor-pointer" onClick={()=> {
                                 triggerHaptic();
-                                setShowAbout(false)
+                                animateBack();
                             }} />
                     }
                     <div className="relative w-full flex flex-wrap justify-center items-center gap-3 mt-4">
@@ -298,7 +296,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                             </div>
                         </div>
                         {showSupport && createPortal(  
-                            <div className={`supportBox ${isNative ? 'fixed top-0 left-0' : 'absolute top-0 left-0'} w-full min-h-screen ${showSupport ? "flex" : "hidden"} justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white motion-preset-expand bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`} ref={null} onMouseDown={handleClickOutside}>
+                            <div className={`supportBox ${isNative ? 'fixed top-0 left-0' : 'absolute top-0 left-0'} w-full min-h-screen ${showSupport ? "flex" : "hidden"} justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white ${animateOut ? 'motion-preset-shrink' : 'motion-preset-expand'} motion-duration-500 bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`} ref={null} onMouseDown={handleClickOutside}>
                                 <div className={`relative w-8/10 ${expandCrypto ? "h-100" : "h-50"} flex justify-center items-center bg-app-lightest dark:bg-app-darkest px-2 shadow-lg rounded-lg`} ref={donateRef} onMouseDown={handleClickOutside}>
                                     <div className={`relative w-8/10 ${expandCrypto ? "h-90" : "h-30"} flex flex-wrap gap-2 justify-center items-center`}>
                                         <p className="text-xs md:text-sm text-center font-bold pb-4">Support MatrixTinz and Me, the Dev, by donating a small gift. Any amount is appreciated 🤗</p>

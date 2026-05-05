@@ -8,9 +8,8 @@ import { triggerHaptic } from './utils';
 import { IonIcon } from '@ionic/react';
 import { chevronDown, returnUpForward, copy, trash, trashOutline } from 'ionicons/icons';
 
-const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculationArr, calculations, contextMenu, setContextMenu, separateFont}) => {
+const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculationArr, calculations, contextMenu, setContextMenu, separateFont, shoWarning, setShoWarning, animateOut, animateBack}) => {
     const [selectedId, setSelectedId] = useState(null);
-    const [shoWarning, setShoWarning] = useState(false);
     const [deleteAll, setDeleteAll] = useState(false);
 
     const platform = Capacitor.getPlatform();
@@ -102,7 +101,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
         panel.style.transition = ''
 
         if (diff > 150) {
-            setHistory(false)
+            animateBack();
         }
     }
 
@@ -135,12 +134,12 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                         setShoWarning(true)
                     }} />
                 :
-                    <FontAwesomeIcon icon={faXmarkCircle} className={`text-lg cursor-pointer`} onClick={()=> setHistory(false)} />       
+                    <FontAwesomeIcon icon={faXmarkCircle} className={`text-lg cursor-pointer`} onClick={()=> animateBack()} />       
                 }
             </div>
             {isNative ?
                 <div className="sticky bottom-0 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
-                    <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> setHistory(false)} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} />
+                    <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> animateBack()} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} />
                 </div>
             :
                 <></>
@@ -172,7 +171,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                 </div>
             )}
             {shoWarning && createPortal(
-                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white motion-preset-expand bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
+                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white ${animateOut ? 'motion-preset-shrink' : 'motion-preset-expand'} motion-duration-500 bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
                     <div className="relative w-7/10 md:w-4/10 h-30 bg-app-lightest dark:bg-app-darkest shadow-lg rounded-lg">
                         <div className="relative w-full h-4/10 flex justify-center items-end">
                             <p className="">Delete {deleteAll ? "all?" : "item?"}</p>
@@ -184,17 +183,18 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                                     setDefHistory([]);
                                     localStorage.removeItem('history');
                                     setDeleteAll(false)
-                                    setShoWarning(false)
+                                    animateBack();
                                 } else {
+                                    triggerHaptic()
                                     deleteHistory()
-                                    setShoWarning(false)
+                                    animateBack()
                                 }
                             }}
                                 >Delete</button>
                             <button className="px-3 md:px-4 py-1 bg-success rounded-sm cursor-pointer" onClick={()=> {
                                 triggerHaptic();
-                                setDeleteAll(false)
-                                setShoWarning(false)
+                                setDeleteAll(false);
+                                animateBack();
                                 }}>Cancel</button>
                         </div>
                     </div>

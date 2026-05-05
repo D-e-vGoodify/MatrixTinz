@@ -6,7 +6,7 @@ import { triggerHaptic } from './utils';
 import { IonIcon } from '@ionic/react';
 import { closeCircle, chevronDown, chevronUp } from 'ionicons/icons';
 
-const Themes = ({setThemes, isBlue, setIsBlue, isGreen, setIsGreen, isYellow, setIsYellow, isRed, setIsRed, isPurple, setIsPurple, isOrange, setIsOrange, isAbel, setIsAbel, isOpen, setIsOpen, isBarlow, setIsBarlow, isJosefin, setIsJosefin, isMontserrat, setIsMontserrat, isDigital, setIsDigital, isGoogleSans, setIsGoogleSans, isDotty, setIsDotty, isOrbitron, setIsOrbitron, isTiny, setIsTiny, systemFont, separateFont}) => {
+const Themes = ({setThemes, isBlue, setIsBlue, isGreen, setIsGreen, isYellow, setIsYellow, isRed, setIsRed, isPurple, setIsPurple, isOrange, setIsOrange, isAbel, setIsAbel, isOpen, setIsOpen, isBarlow, setIsBarlow, isJosefin, setIsJosefin, isMontserrat, setIsMontserrat, isDigital, setIsDigital, isGoogleSans, setIsGoogleSans, isDotty, setIsDotty, isOrbitron, setIsOrbitron, isTiny, setIsTiny, systemFont, separateFont, animateBack}) => {
     const root = window.document.documentElement;
     const platform = Capacitor.getPlatform();
     const isNative = platform === 'ios' || platform === 'android';
@@ -244,9 +244,9 @@ const Themes = ({setThemes, isBlue, setIsBlue, isGreen, setIsGreen, isYellow, se
             <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-center gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                 <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>Themes</h1>
                 {isNative ?
-                    <IonIcon icon={closeCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> setThemes(false)} />
+                    <IonIcon icon={closeCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> animateBack()} />
                 :
-                    <FontAwesomeIcon icon={faXmarkCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> setThemes(false)} />       
+                    <FontAwesomeIcon icon={faXmarkCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> animateBack()} />       
                 }
             </div>
             <div className="relative w-full grid gap-2 md:gap-3 grid-cols-[auto] text-app-darkest dark:text-app-lightest px-4 mx-auto">

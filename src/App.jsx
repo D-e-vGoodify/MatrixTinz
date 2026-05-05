@@ -8,6 +8,7 @@ import './App.css'
 import { Calculation } from './Calculation';
 import { DarkModeContext } from './contexts/darkMode';
 import History from './History';
+import App from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { updateSystemBar, keepScreenOn } from './utils';
 import { KeepAwake } from '@capacitor-community/keep-awake';
@@ -69,9 +70,48 @@ function App() {
   const [isThemes, setIsThemes] = useState(false);
   const [isHistory, setIsHistory] = useState(false);
   const [isExtra, setIsExtra] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showSupport, setShowSupport] = useState(false);
+  const [shoWarning, setShoWarning] = useState(false);
+  const [animateOut, setAnimateOut] = useState(false);
   const id = nanoid();
   const timestamp = new Date().toLocaleDateString();
   const [showResult, setShowResult] = useState(false);
+  
+  const handleBackAnimation = () => {
+    const pages = ["Themes", "History", "Extra"]
+    let page = isThemes ? "Themes" : isHistory ? "History" : isExtra ? "Extra" : "";
+    
+    for (let i = 0; i < pages.length; i++) {
+      const element = pages[i]
+      
+      if (element === page) {
+        setAnimateOut(true)
+        setTimeout(()=> {
+          element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
+          
+          setAnimateOut(false)
+        }, 500)
+      }
+    }
+  }
+  
+  useEffect(() => {
+    if (!isNative) return
+    
+    const backHandler = App.addListener('backButton', ({ canGoBack }) => {
+      if (isThemes || isHistory || isExtra) {
+        handleBackAnimation()
+      } else {
+        App.exitApp();
+      }
+    });
+      
+      return () => {
+        backHandler.remove();
+      };
+      
+    }, [isThemes, isHistory, isExtra, showAbout, showSupport, shoWarning]);
 
   const [moreKey, setMoreKey] = useState(false);
   const [invKey, setInvKey] = useState(false);
@@ -657,24 +697,24 @@ function App() {
       </div>
       {
         isThemes ?
-          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
-            <Themes setThemes={setIsThemes} isBlue={isBlue} setIsBlue={setIsBlue} isGreen={isGreen} setIsGreen={setIsGreen} isYellow={isYellow} setIsYellow={setIsYellow} isRed={isRed} setIsRed={setIsRed} isPurple={isPurple} setIsPurple={setIsPurple} isOrange={isOrange} setIsOrange={setIsOrange} isAbel={isAbel} setIsAbel={setIsAbel} isOpen={isOpen} setIsOpen={setIsOpen} isBarlow={isBarlow} setIsBarlow={setIsBarlow} isJosefin={isJosefin} setIsJosefin={setIsJosefin} isMontserrat={isMontserrat} setIsMontserrat={setIsMontserrat} isDigital={isDigital} setIsDigital={setIsDigital} isGoogleSans={isGoogleSans} setIsGoogleSans={setIsGoogleSans} isDotty={isDotty} setIsDotty={setIsDotty} isOrbitron={isOrbitron} setIsOrbitron={setIsOrbitron} isTiny={isTiny} setIsTiny={setIsTiny} systemFont={systemFont} separateFont={separateFont} />
+          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+            <Themes setThemes={setIsThemes} isBlue={isBlue} setIsBlue={setIsBlue} isGreen={isGreen} setIsGreen={setIsGreen} isYellow={isYellow} setIsYellow={setIsYellow} isRed={isRed} setIsRed={setIsRed} isPurple={isPurple} setIsPurple={setIsPurple} isOrange={isOrange} setIsOrange={setIsOrange} isAbel={isAbel} setIsAbel={setIsAbel} isOpen={isOpen} setIsOpen={setIsOpen} isBarlow={isBarlow} setIsBarlow={setIsBarlow} isJosefin={isJosefin} setIsJosefin={setIsJosefin} isMontserrat={isMontserrat} setIsMontserrat={setIsMontserrat} isDigital={isDigital} setIsDigital={setIsDigital} isGoogleSans={isGoogleSans} setIsGoogleSans={setIsGoogleSans} isDotty={isDotty} setIsDotty={setIsDotty} isOrbitron={isOrbitron} setIsOrbitron={setIsOrbitron} isTiny={isTiny} setIsTiny={setIsTiny} systemFont={systemFont} separateFont={separateFont} animateBack={handleBackAnimation} />
           </div>
         :
           <></>
       }
       {
         (isHistory && isWeb) || isNative ?
-          <div className={`history relative max-sm:fixed bottom-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
-            <History theHistory={isHistory} setHistory={setIsHistory} setDefHistory={setDefHistory} setInput={setInput} setCalculationArr={setCalculationArr} calculations={defHistory} contextMenu={contextMenu} setContextMenu={setContextMenu} separateFont={separateFont} />
+          <div className={`history relative max-sm:fixed bottom-0 left-0 ${isWeb && animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
+            <History theHistory={isHistory} setHistory={setIsHistory} setDefHistory={setDefHistory} setInput={setInput} setCalculationArr={setCalculationArr} calculations={defHistory} contextMenu={contextMenu} setContextMenu={setContextMenu} separateFont={separateFont} shoWarning={shoWarning} setShoWarning={setShoWarning} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
           :
           <></>
       }
       {
         isExtra ?
-          <div className={`relative max-sm:fixed top-0 left-0 motion-preset-slide-right motion-duration-500 w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
-            <Extra setExtra={setIsExtra} isContinue={isContinue} setContinue={setIsContinue} isSmart={continueSmart} setSmart={setContinueSmart} isFreshStart={isStartFresh} setFreshStart={setIsStartFresh} systemFont={systemFont} setSystemFont={setSystemFont} separateFont={separateFont} setSeparateFont={setSeparateFont} checkFont={checkFont} isdarkMode={isDarkMode} isblue={isBlue} isgreen={isGreen} isyellow={isYellow} isred={isRed} ispurple={isPurple} />
+          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+            <Extra setExtra={setIsExtra} isContinue={isContinue} setContinue={setIsContinue} isSmart={continueSmart} setSmart={setContinueSmart} isFreshStart={isStartFresh} setFreshStart={setIsStartFresh} systemFont={systemFont} setSystemFont={setSystemFont} separateFont={separateFont} setSeparateFont={setSeparateFont} checkFont={checkFont} showAbout={showAbout} setShowAbout={setShowAbout} isdarkMode={isDarkMode} isblue={isBlue} isgreen={isGreen} isyellow={isYellow} isred={isRed} ispurple={isPurple} showSupport={showSupport} setShowSupport={setShowSupport} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
         :
           <></>
