@@ -17,8 +17,7 @@ There's also a [website](https://matrixtinz.web.app), although the website is ma
 <details>
 <summary><b>🛠️ Project Architecture Details</b></summary>
 <br>
-<h3><b>Programming Languages/Tools used:</b></h3>
-<br>
+<h6><b>Programming Languages/Tools used:</b></h6>
 <hr>
 <ul>
   <li>
