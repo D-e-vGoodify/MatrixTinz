@@ -134,12 +134,18 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                         setShoWarning(true)
                     }} />
                 :
-                    <FontAwesomeIcon icon={faXmarkCircle} className={`text-lg cursor-pointer`} onClick={()=> animateBack()} />       
+                    <FontAwesomeIcon icon={faXmarkCircle} className={`text-lg cursor-pointer`} onClick={()=> {
+                    triggerHaptic();
+                    animateBack();
+                    }} />       
                 }
             </div>
             {isNative ?
                 <div className="sticky bottom-0 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
-                    <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> animateBack()} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} />
+                    <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> {
+                    triggerHaptic();
+                    animateBack();
+                    }} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} />
                 </div>
             :
                 <></>
@@ -182,8 +188,8 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                                     triggerHaptic();
                                     setDefHistory([]);
                                     localStorage.removeItem('history');
-                                    setDeleteAll(false)
                                     animateBack();
+                                    setDeleteAll(false);
                                 } else {
                                     triggerHaptic()
                                     deleteHistory()
@@ -193,8 +199,8 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                                 >Delete</button>
                             <button className="px-3 md:px-4 py-1 bg-success rounded-sm cursor-pointer" onClick={()=> {
                                 triggerHaptic();
-                                setDeleteAll(false);
                                 animateBack();
+                                setDeleteAll(false);
                                 }}>Cancel</button>
                         </div>
                     </div>

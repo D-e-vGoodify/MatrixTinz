@@ -88,7 +88,24 @@ function Main() {
       if (element === page) {
         setAnimateOut(true)
         setTimeout(()=> {
-          element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
+          //element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
+          if (element === "Themes") {
+            setIsThemes(false)
+          } else if (element === "History") {
+            if (shoWarning) {
+              setShoWarning(false)
+            } else {
+              setIsHistory(false)
+            }
+          } else if (element === "Extra") {
+            if (showAbout && showSupport) {
+              setShowSupport(false)
+            } else if (showAbout) {
+              setShowAbout(false)
+            } else {
+              setIsExtra(false)
+            }
+          }
           
           setAnimateOut(false)
         }, 500)
