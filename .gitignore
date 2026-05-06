@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-#SPCK files
-.eslintrc.cjs
-
 # Firebase config
 firebase.json
 .firebaserc

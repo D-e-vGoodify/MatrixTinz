@@ -13,7 +13,7 @@ import { Capacitor } from '@capacitor/core';
 import { updateSystemBar, keepScreenOn } from './utils';
 import { KeepAwake } from '@capacitor-community/keep-awake';
 
-function App() {
+function Main() {
   const { isDarkMode } = useContext(DarkModeContext);
   const root = window.document.documentElement;
   const platform = Capacitor.getPlatform();
@@ -723,4 +723,4 @@ function App() {
   )
 }
 
-export default App
+export default Main
