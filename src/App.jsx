@@ -8,7 +8,7 @@ import './App.css'
 import { Calculation } from './Calculation';
 import { DarkModeContext } from './contexts/darkMode';
 import History from './History';
-import App from '@capacitor/app';
+import { App } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
 import { updateSystemBar, keepScreenOn } from './utils';
 import { KeepAwake } from '@capacitor-community/keep-awake';
