@@ -43,6 +43,10 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
+      - name: Locate APK
+        run: find android/app/build/outputs/apk -name "*.apk"
+        
+
       - name: Sign App Bundle
         uses: r0adkll/sign-android-release@v1
         id: sign_app
@@ -56,7 +60,7 @@ jobs:
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: matrixtinz-debug
+          name: app-debug-signed
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
 
      # - name: Upload Artifact
