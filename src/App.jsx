@@ -87,28 +87,26 @@ function Main() {
       
       if (element === page) {
         setAnimateOut(true)
-        setTimeout(()=> {
-          //element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
-          if (element === "Themes") {
-            setIsThemes(false)
-          } else if (element === "History") {
-            if (shoWarning) {
+        if (isThemes || showSupport || (!showAbout && isExtra) || shoWarning) {
+          setTimeout(() => {
+            //element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
+            if (element === "Themes") {
+              setIsThemes(false)
+            } else if (element === "History") {
               setShoWarning(false)
-            } else {
-              setIsHistory(false)
+            } else if (element === "Extra") {
+              if (showAbout && showSupport) {
+                setShowSupport(false)
+              } else {
+                setIsExtra(false)
+              }
             }
-          } else if (element === "Extra") {
-            if (showAbout && showSupport) {
-              setShowSupport(false)
-            } else if (showAbout) {
-              setShowAbout(false)
-            } else {
-              setIsExtra(false)
-            }
-          }
-          
-          setAnimateOut(false)
-        }, 500)
+            
+            setAnimateOut(false)
+          }, 500)
+        } else {
+          element === "History" ? setIsHistory(false) : setShowAbout(false)
+        }
       }
     }
   }
@@ -714,7 +712,7 @@ function Main() {
       </div>
       {
         isThemes ?
-          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'transition-transform duration-500 ease-in-out -translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
             <Themes setThemes={setIsThemes} isBlue={isBlue} setIsBlue={setIsBlue} isGreen={isGreen} setIsGreen={setIsGreen} isYellow={isYellow} setIsYellow={setIsYellow} isRed={isRed} setIsRed={setIsRed} isPurple={isPurple} setIsPurple={setIsPurple} isOrange={isOrange} setIsOrange={setIsOrange} isAbel={isAbel} setIsAbel={setIsAbel} isOpen={isOpen} setIsOpen={setIsOpen} isBarlow={isBarlow} setIsBarlow={setIsBarlow} isJosefin={isJosefin} setIsJosefin={setIsJosefin} isMontserrat={isMontserrat} setIsMontserrat={setIsMontserrat} isDigital={isDigital} setIsDigital={setIsDigital} isGoogleSans={isGoogleSans} setIsGoogleSans={setIsGoogleSans} isDotty={isDotty} setIsDotty={setIsDotty} isOrbitron={isOrbitron} setIsOrbitron={setIsOrbitron} isTiny={isTiny} setIsTiny={setIsTiny} systemFont={systemFont} separateFont={separateFont} animateBack={handleBackAnimation} />
           </div>
         :
@@ -722,7 +720,7 @@ function Main() {
       }
       {
         (isHistory && isWeb) || isNative ?
-          <div className={`history relative max-sm:fixed bottom-0 left-0 ${isWeb && animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
+          <div className={`history relative max-sm:fixed bottom-0 left-0 ${isWeb && animateOut ? 'transition-transform duration-500 ease-in-out -translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto z-50`} style={{ transform: (isHistory && isNative) ? 'translateY(0)' : (!isHistory && isNative) ? 'translateY(100%)' : '' }}>
             <History theHistory={isHistory} setHistory={setIsHistory} setDefHistory={setDefHistory} setInput={setInput} setCalculationArr={setCalculationArr} calculations={defHistory} contextMenu={contextMenu} setContextMenu={setContextMenu} separateFont={separateFont} shoWarning={shoWarning} setShoWarning={setShoWarning} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
           :
@@ -730,7 +728,7 @@ function Main() {
       }
       {
         isExtra ?
-          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'motion-preset-slide-left motion-duration-500' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
+          <div className={`relative max-sm:fixed top-0 left-0 ${animateOut ? 'transition-transform duration-500 ease-in-out -translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-md min-w-[320px] max-sm:max-w-screen sm:h-full sm:max-h-[600px] max-sm:h-screen bg-app-lightest dark:bg-app-darkest ${isWeb ? "md:border border-gray-700 dark:border-white rounded-lg" : ""} overflow-auto`}>
             <Extra setExtra={setIsExtra} isContinue={isContinue} setContinue={setIsContinue} isSmart={continueSmart} setSmart={setContinueSmart} isFreshStart={isStartFresh} setFreshStart={setIsStartFresh} systemFont={systemFont} setSystemFont={setSystemFont} separateFont={separateFont} setSeparateFont={setSeparateFont} checkFont={checkFont} showAbout={showAbout} setShowAbout={setShowAbout} isdarkMode={isDarkMode} isblue={isBlue} isgreen={isGreen} isyellow={isYellow} isred={isRed} ispurple={isPurple} showSupport={showSupport} setShowSupport={setShowSupport} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
         :

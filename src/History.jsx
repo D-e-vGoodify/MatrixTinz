@@ -177,7 +177,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                 </div>
             )}
             {shoWarning && createPortal(
-                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white ${animateOut ? 'motion-preset-shrink' : 'motion-preset-expand'} motion-duration-500 bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
+                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white ${animateOut ? 'transition-transform duration-500 ease-in-out scale-50' : 'motion-preset-expand'} motion-duration-500 bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
                     <div className="relative w-7/10 md:w-4/10 h-30 bg-app-lightest dark:bg-app-darkest shadow-lg rounded-lg">
                         <div className="relative w-full h-4/10 flex justify-center items-end">
                             <p className="">Delete {deleteAll ? "all?" : "item?"}</p>

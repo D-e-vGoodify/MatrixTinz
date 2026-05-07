@@ -1,0 +1,16 @@
+name: Generate Keystore
+on: workflow_dispatch # This allows you to trigger it manually
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Key
+        run: |
+          keytool -genkey -v -keystore GoodifyFOSSApps.keystore -alias matrixtinz-alias -keyalg RSA -keysize 2048 -validity 10000 -storepass "goodify1@KS" -keypass "goodify1@MT" -dname "CN=myName, OU=Dev, O=GoodifyApps, L=Ifako-ijaiye, S=Lagos, C=NG"
+          
+      - name: Convert to Base64
+        run: |
+          echo "COPY THE TEXT BELOW THIS LINE:"
+          base64 GoodifyFOSSApps.keystore
+          echo "END OF BASE64 STRING"
