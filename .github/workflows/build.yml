@@ -43,9 +43,8 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
-     # - name: Locate APK
-       # run: find android/app/build/outputs/apk -name "*.apk"
-        
+      - name: Locate APK
+        run: find android/app/build/outputs/apk -name "*.apk"
 
       - name: Sign App Bundle
         uses: r0adkll/sign-android-release@v1
