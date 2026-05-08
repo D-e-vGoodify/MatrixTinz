@@ -48,8 +48,8 @@ jobs:
           mkdir -p android/app/build/outputs/apk/to_sign
           cp android/app/build/outputs/apk/release/app-release-unsigned.apk android/app/build/outputs/apk/to_sign/app-unsigned.apk
 
-      - name: Locate APK
-        run: find android/app/build/outputs/apk -name "*.apk"
+     # - name: Locate APK
+       # run: find android/app/build/outputs/apk -name "*.apk"
 
       - name: Sign App Bundle
         uses: r0adkll/sign-android-release@v1
