@@ -43,8 +43,8 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: Locate APK
-        run: find android/app/build/outputs/apk -name "*.apk"
+     # - name: Locate APK
+       # run: find android/app/build/outputs/apk -name "*.apk"
         
 
       - name: Sign App Bundle
@@ -60,11 +60,5 @@ jobs:
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-signed
+          name: app-debug
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
-
-     # - name: Upload Artifact
-      #  uses: actions/upload-artifact@v4
-      #  with:
-         # name: app-debug
-         # path: android/app/build/outputs/apk/debug/app-debug.apk
