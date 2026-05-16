@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+#Keygen action
+.github/workflows/keygen.yml
+
 # Firebase config
 firebase.json
 .firebaserc

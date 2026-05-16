@@ -125,7 +125,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
 
     return (
         <div className={`historyBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter`}>
-            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-center gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
+            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-center gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
                 <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>History</h1>
                 {isNative ?
                     <IonIcon icon={trashOutline} className="text-lg cursor-pointer" onClick={()=> {
@@ -141,7 +141,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                 }
             </div>
             {isNative ?
-                <div className="sticky bottom-0 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
+                <div className="sticky bottom-0 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
                     <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> {
                     triggerHaptic();
                     animateBack();
@@ -177,7 +177,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                 </div>
             )}
             {shoWarning && createPortal(
-                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white ${animateOut ? 'transition-transform duration-500 ease-in-out scale-50' : 'motion-preset-expand'} motion-duration-500 bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
+                <div className={`fixed inset-0 w-full flex justify-center items-center ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} dark:text-white transition-transform duration-500 ease-in-out ${animateOut ? 'scale-50' : 'motion-preset-expand motion-duration-500'} bg-transparent backdrop-blur-xs backdrop-brightness-90 z-100`}>
                     <div className="relative w-7/10 md:w-4/10 h-30 bg-app-lightest dark:bg-app-darkest shadow-lg rounded-lg">
                         <div className="relative w-full h-4/10 flex justify-center items-end">
                             <p className="">Delete {deleteAll ? "all?" : "item?"}</p>
