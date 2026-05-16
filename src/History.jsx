@@ -125,7 +125,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
 
     return (
         <div className={`historyBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter`}>
-            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-16 md:h-20 justify-center items-end gap-[50%] pb-4 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
+            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end gap-[50%] pb-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
                 <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>History</h1>
                 {isNative ?
                     <IonIcon icon={trashOutline} className="text-lg cursor-pointer" onClick={()=> {
@@ -141,7 +141,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                 }
             </div>
             {isNative ?
-                <div className="sticky top-0 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
+                <div className="sticky top-20 left-0 w-full h-12 flex justify-center pt-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
                     <IonIcon icon={chevronDown} className={`text-lg cursor-grab active:cursor-grabbing`} onClick={()=> {
                     triggerHaptic();
                     animateBack();

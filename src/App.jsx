@@ -87,7 +87,7 @@ function Main() {
       
       if (element === page) {
         if (isThemes || showSupport || (!showAbout && isExtra) || shoWarning) {
-          setAnimateOut(true)
+          /*setAnimateOut(true)
           setTimeout(() => {
             //element === "Themes" ? setThemes(false) : (element === "History" && shoWarning) ? setShoWarning(false) : element === "History" ? setHistory(false) : (showAbout && showSupport) ? setShowSupport(false) : (element === "Extra" && showAbout) ? setShowAbout(false) : setExtra(false)
             if (element === "Themes") {
@@ -103,7 +103,18 @@ function Main() {
             }
             
             setAnimateOut(false)
-          }, 500)
+          }, 500)*/
+            if (element === "Themes") {
+              setIsThemes(false)
+            } else if (element === "History") {
+              setShoWarning(false)
+            } else if (element === "Extra") {
+              if (showAbout && showSupport) {
+                setShowSupport(false)
+              } else {
+                setIsExtra(false)
+              }
+            }
         } else {
           element === "History" ? setIsHistory(false) : setShowAbout(false)
         }
