@@ -4,6 +4,7 @@ import { faDesktop, faGears, faHistory, faMoon, faPaintBrush, faSun } from '@for
 import { DarkModeContext } from './contexts/darkMode';
 import { triggerHaptic } from './utils';
 import { Capacitor } from '@capacitor/core';
+import { App } from '@capacitor/app';
 import { Keyboard } from '@capacitor/keyboard';
 import { IonIcon } from '@ionic/react';
 import { desktopOutline, cog, moon, brush, sunny } from 'ionicons/icons';
@@ -29,11 +30,31 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
         setInputRef(inputRef)
     }, [input]);
 
-    const handleInputFocus = async (e) => {
+    /*const handleInputFocus = async (e) => {
         if (isNative) {
             await Keyboard.hide();
         }
-    }
+    }*/
+    
+    useEffect(() => {
+        if (!isNative) return;
+    
+        // Listen for the app coming back from the background
+        const appStateListener = App.addListener('appStateChange', async ({ isActive }) => {
+            if (isActive) {
+                await Keyboard.hide(); // Slam the keyboard shut instantly
+                
+                // Optional: completely remove focus from the input to be safe
+                if (inputRef.current) {
+                    inputRef.current.blur();
+                }
+            }
+        });
+    
+        return () => {
+            appStateListener.then(listener => listener.remove());
+        };
+    }, [isNative]);
 
     const disableKeyBoard = (e) => {
         const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'];
@@ -159,8 +180,8 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
                 }
             </div>
             <div className='relative w-full h-2/3 flex items-center justify-center'>
-                <input className={`absolute w-full ${getDynamicTextSize()} outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-none digital:py-2 ${showResult && !isNative ? 'bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : showResult && isNative ? 'bottom-3/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : !showResult && !isNative ? 'bottom-[55%] md:bottom-5/10 px-2 scale-100' : 'bottom-[65%] md:bottom-5/10 px-2 scale-100'} caret-app-darker dark:caret-app-lighter selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black`} inputMode="none" onFocus={handleInputFocus} type="text" onKeyDown={isWeb ? disableKeyBoard : undefined} onKeyUp={handleCursorSnap} ref={inputRef} value={input || 0} onChange={(e) => setInput(e.target.value)} onClick={handleCursorSnap} readOnly={showResult} />
-                <input onMouseDown={(e) => e.preventDefault()} className={`absolute right-0 text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-4xl orbitron:md:text-5xl googleSans:text-[39px] googleSans:md:text-[48px] outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-none digital:py-2 ${showResult && !isNative ? 'w-full bottom-[55%] md:bottom-5/10 px-2 scale-100' : showResult && isNative ? 'w-full bottom-[65%] md:bottom-5/10 px-2 scale-100' : !showResult && !isNative ? 'w-3/2 bottom-1/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300' : 'w-3/2 bottom-3/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300'} border-none selection:bg-[#0F5C91] dark:selection:bg-[#85C4EE] selection:text-white dark:selection:text-black ${answer ? 'motion-translate-y-in-25' : ''} cursor-default`} value={answer} readOnly />
+                <input className={`absolute w-full ${getDynamicTextSize()} outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-none digital:pb-2 ${showResult && !isNative ? 'bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : showResult && isNative ? 'bottom-3/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : !showResult && !isNative ? 'bottom-[55%] md:bottom-5/10 px-2 scale-100' : 'bottom-[65%] md:bottom-5/10 px-2 scale-100'} caret-app-darker dark:caret-app-lighter selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black`} inputMode="none" type="text" onKeyDown={isWeb ? disableKeyBoard : undefined} onKeyUp={handleCursorSnap} ref={inputRef} value={input || 0} onChange={(e) => setInput(e.target.value)} onClick={handleCursorSnap} readOnly={showResult} />
+                <input onMouseDown={(e) => e.preventDefault()} className={`absolute right-0 text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-4xl orbitron:md:text-5xl googleSans:text-[39px] googleSans:md:text-[48px] outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-none digital:pb-2 ${showResult && !isNative ? 'w-full bottom-[55%] md:bottom-5/10 px-2 scale-100' : showResult && isNative ? 'w-full bottom-[65%] md:bottom-5/10 px-2 scale-100' : !showResult && !isNative ? 'w-3/2 bottom-1/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300' : 'w-3/2 bottom-3/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300'} border-none selection:bg-[#0F5C91] dark:selection:bg-[#85C4EE] selection:text-white dark:selection:text-black ${answer ? 'motion-translate-y-in-25' : ''} cursor-default`} value={answer} readOnly />
             </div>
         </div>
     )

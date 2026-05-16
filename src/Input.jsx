@@ -39,13 +39,13 @@ const Input = ({setInput, moreKey, invKey, isDeg}) => {
                 <button key={index} onClick={() => {
                     triggerHaptic();
                     setInput(value, more, cancel, multiply)
-                }} className={` ${moreKey ? 'hidden' : 'flex'} justify-center items-center outline-none rounded-xl cursor-pointer ${speciaValues.includes(value) ? 'special text-app-dark dark:text-app-light font-bold' : ''} ${icons.includes(value) ? 'dotty:text-xl orbitron:text-xl googleSans:text-xl' : ''}`}>{value}</button>
+                }} className={` ${moreKey ? 'hidden' : 'flex'} justify-center items-center outline-none select-none rounded-xl cursor-pointer ${speciaValues.includes(value) ? 'special text-app-dark dark:text-app-light font-bold' : ''} ${icons.includes(value) ? 'dotty:text-xl orbitron:text-xl googleSans:text-xl' : ''}`}>{value}</button>
             ))}
             {moreValues.map((value, index) => (
                 <button key={index} disabled={(invKey && value === "Deg") || (isDeg && value === "Inv")} onClick={() => {
                     triggerHaptic();
                     setInput(value, noMore, cancel, multiply, invSin, invCos, invTan, power, inverse)
-                }} className={` ${moreKey ? 'flex' : 'hidden'} justify-center items-center outline-none rounded-xl cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed ${speciaValues.includes(value) ? 'special text-app-dark dark:text-app-light font-bold' : ''} ${icons.includes(value) ? 'dotty:text-base dotty:md:text-lg orbitron:text-base orbitron:md:text-lg googleSans:text-base googleSans:md:text-lg' : ''}`}>{value}</button>
+                }} className={` ${moreKey ? 'flex' : 'hidden'} justify-center items-center outline-none select-none rounded-xl cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed ${speciaValues.includes(value) ? 'special text-app-dark dark:text-app-light font-bold' : ''} ${icons.includes(value) ? 'dotty:text-base dotty:md:text-lg orbitron:text-base orbitron:md:text-lg googleSans:text-base googleSans:md:text-lg' : ''}`}>{value}</button>
             ))}
         </div>
     )

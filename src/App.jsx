@@ -705,7 +705,7 @@ function Main() {
   }
 
   return (
-    <main className={`relative h-screen flex justify-center items-center gap-10 ${isNative ? "pt-[calc(10rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))]" : "" } overflow-hidden`} onClick={() => setContextMenu({ show:false, x: 0, y: 0, selectedItem: null })}>
+    <main className={`relative h-screen flex justify-center items-center gap-10 ${isNative ? "pt-[calc(7rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))]" : "" } overflow-hidden`} onClick={() => setContextMenu({ show:false, x: 0, y: 0, selectedItem: null })}>
       <div className={`${isThemes || (isHistory && isWeb) || isExtra ? "md:motion-preset-slide-left md:motion-duration-500" : ""} relative w-full max-w-md min-w-[320px] sm:h-full sm:max-h-[600px] max-sm:h-screen ${isWeb ? "md:border border-gray-700 dark:border-white rounded-xl" : ""}`}>
         <Display input={input} setInput={setAllowedKeys} setInputRef={setInputRef} getVisualLength={getVisualLength} useDefKeys={findArrayIndex} calculationArr={calculationArr} answer={answer} setThemes={setIsThemes} setHistory={setIsHistory} setExtra={setIsExtra} showResult={showResult} setShowResult={minResult} />
         <Input setInput={handleInput} moreKey={moreKey} invKey={invKey} isDeg={isDeg} />
