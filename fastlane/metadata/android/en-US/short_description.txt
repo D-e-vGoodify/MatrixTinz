@@ -1,0 +1,4 @@
+MatrixTinz
+
+A modern calculator app with a nice stylish UI and tweakable preferences/settings
+Made with React, Tailwindcss, with Ionic & CapacitorJs for Native support
