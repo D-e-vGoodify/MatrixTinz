@@ -1,0 +1,34 @@
+# MatrixTinz 
+
+A FOSS modern android app with a clean UI, made to bring a fun and user preferred experience to Calculations 😄.
+<br>
+
+<h4><u>Other Info:</u><h4>
+
+<b>🛠️ Project Architecture Details</b>
+<br>
+<h6><b>Programming Languages/Tools used:</b></h6>
+<hr>
+<ul>
+  <li>
+    React
+  </li>
+  <li>
+    Vite
+  </li>
+  <li>
+    CapacitorJs
+  </li>
+  <li>
+    Ionic
+  </li>
+  <li>
+    Tailwindcss
+  </li>
+  <li>
+    NodeJs
+  </li>
+</ul>
+
+<br>
+This calculator uses the MERN/Capacitor stack to interact directly with the device's native window manager.
