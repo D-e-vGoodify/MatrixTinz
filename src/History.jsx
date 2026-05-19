@@ -114,7 +114,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
                         <span className={`${separateFont ? "text-xs dotty:text-base" : "text-xs dotty:text-base orbitron:text-[10px] googleSans:text-[10px]"} font-bold uppercase tracking-wides`}>{defHistory.time === new Date().toLocaleDateString() ? "Today" : defHistory.time}</span>
                     </div>
                 )}
-                <div className="relative w-full px-3 duration-300 hover:backdrop-brightness-90 dark:hover:backdrop-brightness-125 rounded-lg" onContextMenu={(e)=> handlesRightClick(e, defHistory)} key={index}>
+                <div className="relative w-full px-3 duration-300 hover:backdrop-brightness-90 dark:hover:backdrop-brightness-125 select-none rounded-lg" onContextMenu={(e)=> handlesRightClick(e, defHistory)} key={index}>
                     <h2 className={`${separateFont ? "text-lg md:text-xl" : "text-lg md:text-xl dotty:text-2xl dotty:md:text-3xl orbitron:text-base orbitron:md:text-lg googleSans:text-base googleSans:md:text-lg"} outline-none text-right selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black break-all`}>{defHistory.inputStr} =</h2>
                     <h4 className={`${separateFont ? "text-xl md:text-2xl" : "text-xl md:text-2xl dotty:text-3xl dotty:md:text-4xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"} outline-none text-right font-bold selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black break-all`}>{defHistory.answer}</h4>
                     <hr></hr>
@@ -125,7 +125,7 @@ const History = ({theHistory, setHistory, setDefHistory, setInput, setCalculatio
 
     return (
         <div className={`historyBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter`}>
-            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end gap-[50%] pb-2 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
+            <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end gap-[50%] pb-3 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-100">
                 <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>History</h1>
                 {isNative ?
                     <IonIcon icon={trashOutline} className="text-lg cursor-pointer" onClick={()=> {

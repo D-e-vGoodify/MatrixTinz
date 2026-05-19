@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft, faChevronDown, faChevronRight, faChevronUp, faInfoCircle, faXmarkCircle, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Iconsvg, FDroidsvg, QRsvg } from './Svgs';
+import { Iconsvg, FDroidsvg, IzzyDroidsvg, QRsvg } from './Svgs';
 import { Capacitor } from '@capacitor/core';
 import { triggerHaptic } from './utils';
 import { Browser } from '@capacitor/browser';
@@ -14,7 +14,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
     const platform = Capacitor.getPlatform();
     const isNative = platform === 'ios' || platform === 'android';
     const isWeb = platform === 'web';
-    const [showFDroid, setShowFDroid] = useState(false);
+    const [showDroid, setShowDroid] = useState(false);
     const [dropDown, setDropDown] = useState(false);
     const [imgSrc, setImgSrc] = useState("https://github.com/D-e-vGoodify.png");
     const [expandCrypto, setExpandCrypto] = useState(false);
@@ -113,7 +113,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
         <div className={`extraBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter overflow-hidden`}>
             <div className={`flex w-[200%] h-full transition-transform duration-500 ease-in-out ${showAbout ? "-translate-x-1/2" : "translate-x-0"}`}>
                 <div className="relative w-1/2 min-h-full overflow-y-auto">
-                    <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end pb-2 gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
+                    <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end pb-3 gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                         <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>Settings</h1>
                         {isNative ?
                             <IonIcon icon={closeCircle} className="text-2xl md:text-lg cursor-pointer" onClick={()=> {
@@ -217,7 +217,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                     <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0</h3>
                                 </div>
                             </div>
-                            <div className="relative w-12 h-1/2 flex flex-wrap justify-center items-center text-xl gap-3.5">
+                            <div className="relative w-12 h-9/10 flex flex-wrap justify-center items-center text-xl gap-3">
                                 {isWeb ?
                                     <>
                                         <a 
@@ -234,9 +234,13 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                             </div>
                                         </a>
                                         <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
-                                        setShowFDroid(true)
-                                        setTimeout(()=> {setShowFDroid(false)}, 3000)
+                                        setShowDroid(true)
+                                        setTimeout(()=> {setShowDroid(false)}, 3000)
                                         }}><FDroidsvg /></div>
+                                        <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
+                                        setShowDroid(true)
+                                        setTimeout(()=> {setShowDroid(false)}, 3000)
+                                        }}><IzzyDroidsvg /></div>
                                     </>
                                 :
                                     <>
@@ -248,9 +252,13 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                             }
                                         </div>
                                         <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
-                                        setShowFDroid(true)
-                                        setTimeout(()=> {setShowFDroid(false)}, 3000)
+                                        setShowDroid(true)
+                                        setTimeout(()=> {setShowDroid(false)}, 3000)
                                         }}><FDroidsvg /></div>
+                                        <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
+                                        setShowDroid(true)
+                                        setTimeout(()=> {setShowDroid(false)}, 3000)
+                                        }}><IzzyDroidsvg /></div>
                                     </>
                                 }
                             </div>
@@ -322,7 +330,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                             isWeb ? document.getElementById('aboutBox') : document.body
                         )}
                     </div>
-                    <div className={`absolute bottom-0 w-full ${isNative ? 'h-15' : 'h-10'} ${showFDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
+                    <div className={`absolute bottom-0 w-full ${isNative ? 'h-15' : 'h-10'} ${showDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
                         <span className="text-sm md:text-lg text-app-darker">{isNative ? <IonIcon icon={informationCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} /> : <FontAwesomeIcon icon={faInfoCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} />} Coming Soon...</span>
                     </div>
                 </div>

@@ -3,9 +3,6 @@
   "appName": "MatrixTinz",
   "webDir": "dist",
   "overlaysWebView": false,
-  "server": {
-    "cleartext": true
-  },
 
   "plugins": {
     "SplashScreen": {

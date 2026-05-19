@@ -330,12 +330,17 @@ function Main() {
     if (cursorStart === simulatedInput.length) {
       let lastInput = simulatedInput[simulatedInput.length - 1];
 
-      if (!simulatedInput && (isNewInputOperator || value === "^(-1)" || value === "%")) {
-        setInput("0" + value);
-        
-        setCalculationArr(["0"])
-        setCalculationArr((prevArr) => [...prevArr, calcVal]);
-        return;
+      if (!simulatedInput/*&& (isNewInputOperator || value === "^(-1)" || value === "%")*/) {
+        if (value === "0") {
+          return
+        }
+        if (isNewInputOperator || value === "^(-1)" || value === "%") {
+          setInput("0" + value);
+
+          setCalculationArr(["0"])
+          setCalculationArr((prevArr) => [...prevArr, calcVal]);
+          return;
+        }
       }
       
       if (showResult) {
