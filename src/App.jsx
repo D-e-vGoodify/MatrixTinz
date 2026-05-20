@@ -330,10 +330,13 @@ function Main() {
     if (cursorStart === simulatedInput.length) {
       let lastInput = simulatedInput[simulatedInput.length - 1];
 
-      if (!simulatedInput && (isNewInputOperator || value === "0" || value === "^(-1)" || value === "%")) {
+      if (!simulatedInput) {
         if (value === "0") {
-          return
+          return;
         }
+      }
+
+      if (!simulatedInput && (isNewInputOperator || value === "^(-1)" || value === "%")) {
         if (isNewInputOperator || value === "^(-1)" || value === "%") {
           setInput("0" + value);
 
