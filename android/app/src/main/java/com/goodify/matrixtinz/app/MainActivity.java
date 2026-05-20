@@ -9,14 +9,15 @@ public class MainActivity extends BridgeActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     
-    // 2. Access the underlying WebView safely
-    WebView webView = (WebView) this.bridge.getWebView();
-    WebSettings settings = webView.getSettings();
+    // Using your original, perfectly correct bridge method!
+    WebSettings settings = this.getBridge().getWebView().getSettings();
     
-    // 3. Force the WebView to point its font aliases to the system defaults
+    // Force the WebView to point its font aliases to the system defaults
     settings.setStandardFontFamily("sans-serif");
     settings.setSansSerifFontFamily("sans-serif");
     settings.setSerifFontFamily("serif");
-    settings.setMonospaceFontFamily("monospace");
+    
+    // THE FIX: Android uses "Fixed" instead of "Monospace" for this method
+    settings.setFixedFontFamily("monospace");
   }
 }
