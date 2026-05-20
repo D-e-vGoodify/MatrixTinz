@@ -1482,7 +1482,7 @@ export const IzzyDroidsvg = () => {
         <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 48 48"
-        className='w-36 h-36 transition-colors duration-500'
+        className='w-6 h-6 transition-colors duration-500'
         >
             <defs>
                 <style>
