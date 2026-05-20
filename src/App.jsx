@@ -330,7 +330,7 @@ function Main() {
     if (cursorStart === simulatedInput.length) {
       let lastInput = simulatedInput[simulatedInput.length - 1];
 
-      if (!simulatedInput/*&& (isNewInputOperator || value === "^(-1)" || value === "%")*/) {
+      if (!simulatedInput && (isNewInputOperator || value === "^(-1)" || value === "%" || value === "0")) {
         if (value === "0") {
           return
         }
