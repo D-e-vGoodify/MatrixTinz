@@ -7,7 +7,11 @@ A FOSS modern android app with a clean UI, made to bring a fun and user preferre
 <br>
 There's also a [website](https://matrixtinz.web.app), although the website is made with firebase so its not completely open-source, but that's just for the website, the app is fully open source
 
-<b>COMING SOON on F-Droid!</b> 🎉 [![F-Droid: Coming Soon](https://img.shields.io/badge/F--Droid-Coming%20Soon-green?logo=f-droid&logoColor=white)](https://f-droid.org/)
+<b>COMING SOON!</b> 🎉
+<br>
+[![F-Droid: Coming Soon](https://img.shields.io/badge/F--Droid-Coming%20Soon-green?logo=f-droid&logoColor=white)](https://f-droid.org/)
+<br>
+[![IzzyOnDroid: Coming Soon](https://img.shields.io/badge/IzzyOnDroid-Coming%20Soon-00477A?logo=android&logoColor=white&style=flat)](https://codeberg.org/IzzyOnDroid/repo/issues)
 
 <h2><u>Other Info:</u><h2>
 
