@@ -110,7 +110,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
     }
 
     return (
-        <div className={`extraBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full min-h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter overflow-hidden`}>
+        <div className={`extraBox relative ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter overflow-hidden`}>
             <div className={`flex w-[200%] h-full transition-transform duration-500 ease-in-out ${showAbout ? "-translate-x-1/2" : "translate-x-0"}`}>
                 <div className="relative w-1/2 min-h-full overflow-y-auto">
                     <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end pb-3 gap-[50%] bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
@@ -214,7 +214,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                 <Iconsvg isdarkmode={isdarkMode} isblue={isblue} isgreen={isgreen} isyellow={isyellow} isred={isred} ispurple={ispurple} />
                                 <div className="relative bottom-4 w-8/10 h-10 grid grid-cols-[auto]">
                                     <h2 className={`${separateFont ? "text-base md:text-lg" : "text-base md:text-lg dotty:text-xl dotty:md:text-2xl orbitron:text-sm orbitron:md:text-base googleSans:text-sm googleSans:md:text-base"} font-semibold`}>MatrixTinz</h2>
-                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0</h3>
+                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0.1</h3>
                                 </div>
                             </div>
                             <div className="relative w-12 h-9/10 flex flex-wrap justify-center items-center text-xl gap-3">
