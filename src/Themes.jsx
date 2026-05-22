@@ -240,7 +240,7 @@ const Themes = ({setThemes, isBlue, setIsBlue, isGreen, setIsGreen, isYellow, se
     }
 
     return (
-        <div className={`themeBox ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter`}>
+        <div className={`themeBox ${separateFont ? "font-system" : "font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny"} w-full min-h-full ${isNative ? "pt-10" : ""} text-app-darker dark:text-app-lighter`}>
             <div className="sticky top-0 left-0 flex flex-nowrap w-full h-20 justify-center items-end gap-[50%] pb-3 bg-app-lightest/50 dark:bg-app-darkest/50 backdrop-opacity-80 backdrop-blur-sm z-50">
                 <h1 className={`${separateFont ? "text-2xl md:text-3xl" : "text-2xl md:text-3xl dotty:text-4xl dotty:md:text-5xl orbitron:text-xl orbitron:md:text-2xl googleSans:text-xl googleSans:md:text-2xl"} font-bold`}>Themes</h1>
                 {isNative ?

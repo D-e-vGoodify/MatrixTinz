@@ -331,7 +331,7 @@ export const Calculation = ({input, isDeg}) => {
                 processedArray.push(")");
                 openBrackets--
                 //openRoot > 0 && innerRootBrackets === 0 ? openRoot-- : openPower--;
-                console.log("Am i also a problem")
+                //console.log("Am i also a problem")
             }
             
             let affectedSection = processedArray.splice(conversion.startIndex);

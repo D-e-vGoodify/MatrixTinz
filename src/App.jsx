@@ -327,23 +327,22 @@ function Main() {
 
     const isNewInputOperator = operators.includes(value) || value === "!";
 
-    if (cursorStart === simulatedInput.length) {
+    console.log(cursorStart, simulatedInput.length, input)
+    if ((cursorStart === simulatedInput.length) || input === "") {
       let lastInput = simulatedInput[simulatedInput.length - 1];
 
-      if (!simulatedInput) {
+      if (!simulatedInput || simulatedInput === "0") {
         if (value === "0") {
           return;
         }
       }
-
+      
       if (!simulatedInput && (isNewInputOperator || value === "^(-1)" || value === "%")) {
-        if (isNewInputOperator || value === "^(-1)" || value === "%") {
-          setInput("0" + value);
+        setInput("0" + value);
 
-          setCalculationArr(["0"])
-          setCalculationArr((prevArr) => [...prevArr, calcVal]);
-          return;
-        }
+        setCalculationArr(["0"])
+        setCalculationArr((prevArr) => [...prevArr, calcVal]);
+        return;
       }
       
       if (showResult) {
