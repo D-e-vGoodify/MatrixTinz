@@ -13,11 +13,11 @@
   },
 
   "android": {
-    "versionCode": 3,
-    "versionName": "1.0"
+    "versionCode": 4,
+    "versionName": "1.0.2"
   },
   "ios": {
-    "buildNumber": 3,
-    "bundleShortVersionString": "1.0"
+    "buildNumber": 4,
+    "bundleShortVersionString": "1.0.2"
   }
 }

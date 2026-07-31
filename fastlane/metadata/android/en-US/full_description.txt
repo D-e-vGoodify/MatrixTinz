@@ -1,14 +1,13 @@
-# MatrixTinz 
-
 A FOSS modern android app with a clean UI, made to bring a fun and user preferred experience to Calculations 😄.
-<br>
 
-<h4><u>Other Info:</u><h4>
-This calculator does the basic functions of any calculator but takes it up a notch by allowing users do a lot more, fir example; It allows users choose the actions or behaviour after getting your initial answer e.g you can choose whether to start afresh after your initial answer or even continue with the raw calculation instead of the popular preference of continuing with the answer.
-It also has a good set of themes which include 6 set of colour themes and 10 sets of fonts. Material you support is in the works and will be added in a future update as teased on the app. I'm looking to even add support for custom themes ✌🏾
-<br>
+<b><u>Other Info:</u></b>
+
+This calculator does the basic functions of any calculator but takes it up a notch by allowing users do a lot more, for example; It allows users choose the actions or behaviour after getting your initial answer e.g you can choose whether to start afresh after your initial answer or even continue with the raw calculation instead of the popular preference of continuing with the answer.
+
+It also has a good set of themes which include 6 sets of colour themes and 10 sets of fonts. Material you support is in the works and will be added in a future update as teased on the app. I'm looking to even add support for custom themes ✌🏾
+
 This calculator is already loaded and going to be jam-packed with more useful features, but importantly still without feeling too clumped, heavy or confusing.
-Join the ride 👏🏾
-<br>
 
-<h6>This calculator uses the MERN/Capacitor stack to interact directly with the device's native window manager.</h6>
+Join the ride 👏🏾
+
+<b>This calculator uses the MERN/Capacitor stack to interact directly with the device's native window manager.</b>

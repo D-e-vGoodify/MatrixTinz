@@ -34,7 +34,7 @@ const Input = ({setInput, moreKey, invKey, isDeg}) => {
     isDeg ? moreValues[1] = "Rad" : moreValues[1] = "Deg"
 
     return(
-        <div className={`inputBox ${moreKey ? 'more text-base md:text-lg dotty:text-2xl dotty:md:text-3xl orbitron:text-sm orbitron:md:text-base googleSans:text-sm googleSans:md:text-base' : 'text-xl dotty:text-4xl orbitron:text-lg googleSans:text-lg'} absolute grid ${isNative ? "bottom-20 h-6/10 md:h-2/3" : "bottom-0 h-2/3"} w-full dark:text-white font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny`} onMouseDown={(e) => e.preventDefault()}>
+        <div className={`inputBox ${moreKey ? 'more text-base md:text-lg dotty:text-2xl dotty:md:text-3xl orbitron:text-sm orbitron:md:text-base googleSans:text-sm googleSans:md:text-base' : 'text-xl dotty:text-4xl orbitron:text-lg googleSans:text-lg'} absolute grid ${isNative ? "bottom-20 h-6/10" : "bottom-0 h-2/3"} w-full dark:text-white font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny`} onMouseDown={(e) => e.preventDefault()}>
             {values.map((value, index) => (
                 <button key={index} onClick={() => {
                     triggerHaptic();
