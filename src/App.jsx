@@ -20,6 +20,7 @@ function Main() {
   const isNative = platform === 'ios' || platform === 'android';
   const isWeb = platform === 'web';
   const smallScreen = window.matchMedia('(max-width: 767px)');
+  const largeHeight = window.matchMedia('(min-height: 2048px)');
 
   const [defHistory, setDefHistory] = useState(() => {
     const historyData = localStorage.getItem('history');
@@ -265,7 +266,7 @@ function Main() {
       if (!input) {
         Calculation({input: [], isDeg: null});
       }
-      setAnswer(result)
+      setAnswer(result);
     }
   }, [input])
 
@@ -326,7 +327,7 @@ function Main() {
       var simulatedInput = input;
     }
 
-    const isNewInputOperator = operators.includes(value) || value === "!";
+    const isNewInputOperator = operators.includes(value) || value === "!" || value === "^(-1)" || value === "%" || value === ".";
 
     console.log(cursorStart, simulatedInput.length, input)
     if ((cursorStart === simulatedInput.length) || input === "") {
@@ -338,7 +339,7 @@ function Main() {
         }
       }
       
-      if (!simulatedInput && (isNewInputOperator || value === "^(-1)" || value === "%")) {
+      if (!simulatedInput && (isNewInputOperator)) {
         setInput("0" + value);
 
         setCalculationArr(["0"])
@@ -355,6 +356,16 @@ function Main() {
               setCalculationArr((prevArr) => [...prevArr.slice(0, -1), calcVal]);
               return;
             }
+
+            if ((isNewInputOperator || value === "(") && lastInput === ".") {
+              console.log(lastInput)
+              setInput((prevInput) => prevInput + "0");
+              setInput((prevInput) => prevInput + value);
+
+              setCalculationArr((prevArr) => [...prevArr, "0"]);
+              setCalculationArr((prevArr) => [...prevArr, calcVal]);
+              return;
+            }
   
             setInput((prevInput) => prevInput + value);
             setCalculationArr((prevArr) => [...prevArr, calcVal]);
@@ -362,7 +373,7 @@ function Main() {
           }
 
           if (continueSmart) {
-            if (isNewInputOperator || value === "^(-1)" || value === "%") {
+            if (isNewInputOperator) {
               setInput("")
               setInput((prevInput) => prevInput + answer);
               setInput((prevInput) => prevInput + value);
@@ -403,6 +414,16 @@ function Main() {
         setInput((prevInput) => prevInput.slice(0, -1) + value);
 
         setCalculationArr((prevArr) => [...prevArr.slice(0, -1), calcVal]);
+        return;
+      }
+
+      if ((isNewInputOperator || value === "(") && lastInput === ".") {
+        console.log(lastInput)
+        setInput((prevInput) => prevInput + "0");
+        setInput((prevInput) => prevInput + value);
+
+        setCalculationArr((prevArr) => [...prevArr, "0"]);
+        setCalculationArr((prevArr) => [...prevArr, calcVal]);
         return;
       }
 
@@ -707,6 +728,7 @@ function Main() {
             })
             closingCalcBrackets--
           }
+          inputRef.current ? inputRef.current.setSelectionRange(input.length, input.length) : "";
         }
         input ? setShowResult(true) : "";
         const theHistory = new history(id, input, calculationArr, answer, timestamp);
@@ -724,14 +746,14 @@ function Main() {
   }
 
   return (
-    <main className={`relative h-screen flex justify-center items-center gap-10 px-2 ${isNative ? "pt-[calc(7rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))]" : "" } overflow-hidden`} onClick={() => setContextMenu({ show:false, x: 0, y: 0, selectedItem: null })}>
-      <div className={`${isThemes || isExtra ? "md:motion-preset-slide-left md:motion-duration-500" : ""} relative w-full max-w-3xl min-w-[320px] h-full min-h-screen md:border border-gray-700 dark:border-white rounded-xl`}>
+    <main className={`relative h-screen flex ${largeHeight.matches ? "md:flex-col" : ""} justify-center items-center gap-10 px-2 ${isNative ? "pt-[calc(7rem+env(safe-area-inset-top))] pb-[calc(2rem+env(safe-area-inset-bottom))]" : "" } overflow-hidden`} onClick={() => setContextMenu({ show:false, x: 0, y: 0, selectedItem: null })}>
+      <div className={`${isThemes || isExtra ? "md:motion-preset-slide-left md:motion-duration-500" : ""} relative w-full max-w-3xl min-w-[320px] ${largeHeight.matches ? "md:flex-1 md:w-3xl md:max-h-full md:min-h-250 max-md:h-full max-md:min-h-screen" : "h-full min-h-screen"} md:border border-gray-700 dark:border-white rounded-xl`}>
         <Display input={input} setInput={setAllowedKeys} setInputRef={setInputRef} getVisualLength={getVisualLength} useDefKeys={findArrayIndex} calculationArr={calculationArr} answer={answer} setThemes={setIsThemes} setHistory={setIsHistory} setExtra={setIsExtra} showResult={showResult} setShowResult={minResult} />
         <Input setInput={handleInput} moreKey={moreKey} invKey={invKey} isDeg={isDeg} />
       </div>
       {
         isThemes ?
-          <div className={`flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen h-full min-h-screen bg-app-lightest dark:bg-app-darkest md:border border-gray-700 dark:border-white rounded-lg overflow-auto`}>
+          <div className={`flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen ${largeHeight.matches ? "md:w-3xl md:max-h-full md:min-h-250 max-md:h-full max-md:min-h-screen" : "h-full min-h-screen"} bg-app-lightest dark:bg-app-darkest md:border border-gray-700 dark:border-white rounded-lg overflow-auto`}>
             <Themes setThemes={setIsThemes} isBlue={isBlue} setIsBlue={setIsBlue} isGreen={isGreen} setIsGreen={setIsGreen} isYellow={isYellow} setIsYellow={setIsYellow} isRed={isRed} setIsRed={setIsRed} isPurple={isPurple} setIsPurple={setIsPurple} isOrange={isOrange} setIsOrange={setIsOrange} isAbel={isAbel} setIsAbel={setIsAbel} isOpen={isOpen} setIsOpen={setIsOpen} isBarlow={isBarlow} setIsBarlow={setIsBarlow} isJosefin={isJosefin} setIsJosefin={setIsJosefin} isMontserrat={isMontserrat} setIsMontserrat={setIsMontserrat} isDigital={isDigital} setIsDigital={setIsDigital} isGoogleSans={isGoogleSans} setIsGoogleSans={setIsGoogleSans} isDotty={isDotty} setIsDotty={setIsDotty} isOrbitron={isOrbitron} setIsOrbitron={setIsOrbitron} isTiny={isTiny} setIsTiny={setIsTiny} systemFont={systemFont} separateFont={separateFont} animateBack={handleBackAnimation} />
           </div>
         :
@@ -739,7 +761,7 @@ function Main() {
       }
       {
         (isHistory && isWeb) || (isNative && (smallScreen.matches || isHistory)) ?
-          <div className={`history flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${isWeb && animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen h-full min-h-screen bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out md:border border-gray-700 dark:border-white rounded-lg overflow-auto z-50`} style={{ transform: (isHistory && isNative && smallScreen.matches) ? 'translateY(0)' : (!isHistory && isNative && smallScreen.matches) ? 'translateY(100%)' : '' }}>
+          <div className={`history flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${isWeb && animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen ${largeHeight.matches ? "md:w-3xl md:max-h-full md:min-h-250 max-md:h-full max-md:min-h-screen" : "h-full min-h-screen"} bg-app-lightest dark:bg-app-darkest transition-transform duration-500 ease-in-out md:border border-gray-700 dark:border-white rounded-lg overflow-auto z-50`} style={{ transform: (isHistory && isNative && smallScreen.matches) ? 'translateY(0)' : (!isHistory && isNative && smallScreen.matches) ? 'translateY(100%)' : '' }}>
             <History theHistory={isHistory} setHistory={setIsHistory} setDefHistory={setDefHistory} setInput={setInput} setCalculationArr={setCalculationArr} calculations={defHistory} contextMenu={contextMenu} setContextMenu={setContextMenu} separateFont={separateFont} shoWarning={shoWarning} setShoWarning={setShoWarning} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
           :
@@ -747,7 +769,7 @@ function Main() {
       }
       {
         isExtra ?
-          <div className={`flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen h-full min-h-screen bg-app-lightest dark:bg-app-darkest md:border border-gray-700 dark:border-white rounded-lg overflow-auto`}>
+          <div className={`flex max-md:fixed justify-center top-0 left-0 transition-transform duration-500 ease-in-out ${animateOut ? '-translate-x-full' : 'motion-preset-slide-right motion-duration-500'} w-full max-w-3xl min-w-[320px] max-md:max-w-screen ${largeHeight.matches ? "md:w-3xl md:max-h-full md:min-h-250 max-md:h-full max-md:min-h-screen" : "h-full min-h-screen"} bg-app-lightest dark:bg-app-darkest md:border border-gray-700 dark:border-white rounded-lg overflow-auto`}>
             <Extra setExtra={setIsExtra} isContinue={isContinue} setContinue={setIsContinue} isSmart={continueSmart} setSmart={setContinueSmart} isFreshStart={isStartFresh} setFreshStart={setIsStartFresh} systemFont={systemFont} setSystemFont={setSystemFont} separateFont={separateFont} setSeparateFont={setSeparateFont} checkFont={checkFont} showAbout={showAbout} setShowAbout={setShowAbout} isdarkMode={isDarkMode} isblue={isBlue} isgreen={isGreen} isyellow={isYellow} isred={isRed} ispurple={isPurple} showSupport={showSupport} setShowSupport={setShowSupport} animateOut={animateOut} animateBack={handleBackAnimation} />
           </div>
         :

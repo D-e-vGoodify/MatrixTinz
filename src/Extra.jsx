@@ -214,7 +214,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                 <Iconsvg isdarkmode={isdarkMode} isblue={isblue} isgreen={isgreen} isyellow={isyellow} isred={isred} ispurple={ispurple} />
                                 <div className="relative bottom-4 w-8/10 h-10 grid grid-cols-[auto]">
                                     <h2 className={`${separateFont ? "text-base md:text-lg" : "text-base md:text-lg dotty:text-xl dotty:md:text-2xl orbitron:text-sm orbitron:md:text-base googleSans:text-sm googleSans:md:text-base"} font-semibold`}>MatrixTinz</h2>
-                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0.1</h3>
+                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0.2</h3>
                                 </div>
                             </div>
                             <div className="relative w-12 h-9/10 flex flex-wrap justify-center items-center text-xl gap-3">

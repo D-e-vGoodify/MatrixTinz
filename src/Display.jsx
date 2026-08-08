@@ -113,7 +113,7 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
     }
 
     return (
-        <div className="displayBox relative flex flex-wrap justify-center items-end w-full h-1/3 dark:text-white font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny px-4 overflow-hidden">
+        <div className="displayBox absolute top-0 flex flex-wrap justify-center items-end w-full h-1/3 dark:text-white font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny px-4 overflow-hidden">
             <div className="history absolute top-5 left-10 text-app-darker dark:text-app-lighter text-base md:text-lg cursor-pointer">
                 <FontAwesomeIcon icon={faHistory} onClick={()=> {
                     triggerHaptic();
