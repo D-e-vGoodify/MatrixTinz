@@ -11,18 +11,18 @@ There's also a [website](https://matrixtinz.web.app), although the website is ma
 <br>
 [![F-Droid: Coming Soon](https://img.shields.io/badge/F--Droid-Coming%20Soon-green?logo=f-droid&logoColor=white)](https://f-droid.org/)
 <br>
-[![IzzyOnDroid: Coming Soon](https://img.shields.io/badge/IzzyOnDroid-Coming%20Soon-00477A?logo=android&logoColor=white&style=flat)](https://codeberg.org/IzzyOnDroid/repo/issues)
 
-<h2><u>Other Info:</u><h2>
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" height="80" alt="Get it at IzzyOnDroid">](https://apt.izzysoft.de/packages/com.goodify.matrixtinz.app)
+
+<h2>Other Info:</h2>
 
 - [Github](https://github.com/D-e-vGoodify/MatrixTinz) ![Github banner](https://img.shields.io/badge/github-repo-blue?logo=github)
 - [Developer's Github](https://github.com/D-e-vGoodify)
 
+<br>
 <details>
 <summary><b>🛠️ Project Architecture Details</b></summary>
-<br>
-<h6><b>Programming Languages/Tools used:</b></h6>
-<hr>
+<h6><u><b>Programming Languages/Tools used:</b></u></h6>
 <ul>
   <li>
     <a href="https://react.dev/">
@@ -57,5 +57,5 @@ There's also a [website](https://matrixtinz.web.app), although the website is ma
 </ul>
 
 <br>
-This calculator uses the MERN/Capacitor stack to interact directly with the device's native window manager.
+This calculator uses React & CapacitorJs to interact directly with the device's native window manager.
 </details>
