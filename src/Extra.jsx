@@ -14,6 +14,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
     const platform = Capacitor.getPlatform();
     const isNative = platform === 'ios' || platform === 'android';
     const isWeb = platform === 'web';
+    const smallScreen = window.matchMedia('(max-width: 767px)');
     const [showDroid, setShowDroid] = useState(false);
     const [dropDown, setDropDown] = useState(false);
     const [imgSrc, setImgSrc] = useState("https://github.com/D-e-vGoodify.png");
@@ -93,6 +94,10 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
 
     const openRepo = async() => {
         await Browser.open({url: 'https://github.com/D-e-vGoodify/MatrixTinz'});
+    }
+
+    const openIzzy = async() => {
+        await Browser.open({url: 'https://apt.izzysoft.de/packages/com.goodify.matrixtinz.app'});
     }
 
     const openGithub = async() => {
@@ -214,7 +219,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                 <Iconsvg isdarkmode={isdarkMode} isblue={isblue} isgreen={isgreen} isyellow={isyellow} isred={isred} ispurple={ispurple} />
                                 <div className="relative bottom-4 w-8/10 h-10 grid grid-cols-[auto]">
                                     <h2 className={`${separateFont ? "text-base md:text-lg" : "text-base md:text-lg dotty:text-xl dotty:md:text-2xl orbitron:text-sm orbitron:md:text-base googleSans:text-sm googleSans:md:text-base"} font-semibold`}>MatrixTinz</h2>
-                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0.2</h3>
+                                    <h3 className={`relative bottom-2 dotty:bottom-4 ${separateFont ? "text-sm md:text-base" : "text-sm md:text-base dotty:text-lg dotty:md:text-xl orbitron:text-xs orbitron:md:text-sm googleSans:text-xs googleSans:md:text-sm"}`}>Version 1.0.3</h3>
                                 </div>
                             </div>
                             <div className="relative w-12 h-9/10 flex flex-wrap justify-center items-center text-xl gap-3">
@@ -237,10 +242,13 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                         setShowDroid(true)
                                         setTimeout(()=> {setShowDroid(false)}, 3000)
                                         }}><FDroidsvg /></div>
-                                        <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
-                                        setShowDroid(true)
-                                        setTimeout(()=> {setShowDroid(false)}, 3000)
-                                        }}><IzzyDroidsvg /></div>
+                                        <a
+                                            href="https://apt.izzysoft.de/packages/com.goodify.matrixtinz.app"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer"><IzzyDroidsvg /></div>
+                                        </a>
                                     </>
                                 :
                                     <>
@@ -255,10 +263,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                                         setShowDroid(true)
                                         setTimeout(()=> {setShowDroid(false)}, 3000)
                                         }}><FDroidsvg /></div>
-                                        <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={()=>{
-                                        setShowDroid(true)
-                                        setTimeout(()=> {setShowDroid(false)}, 3000)
-                                        }}><IzzyDroidsvg /></div>
+                                        <div className="relative w-9 h-9 md:w-11 md:h-11 flex justify-center items-center text-app-lighter dark:text-app-darker bg-app-darker dark:bg-app-lighter rounded-[50%] cursor-pointer" onClick={openIzzy}><IzzyDroidsvg /></div>
                                     </>
                                 }
                             </div>
@@ -330,7 +335,7 @@ const Extra = ({setExtra, isContinue, setContinue, isSmart, setSmart, isFreshSta
                             isWeb ? document.getElementById('aboutBox') : document.body
                         )}
                     </div>
-                    <div className={`absolute bottom-0 w-full ${isNative ? 'h-15' : 'h-10'} ${showDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
+                    <div className={`absolute bottom-0 w-full ${isNative && smallScreen.matches ? 'h-15' : 'h-10'} ${showDroid ? 'flex' : 'hidden'} justify-center items-center motion-preset-slide-up bg-warning border-t-2 border-app-dark`}>
                         <span className="text-sm md:text-lg text-app-darker">{isNative ? <IonIcon icon={informationCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} /> : <FontAwesomeIcon icon={faInfoCircle} className={`${separateFont ? "" : "dotty:text-lg dotty:md:text-xl orbitron:text-lg orbitron:md:text-xl googleSans:text-lg googleSans:md:text-xl"}`} />} Coming Soon...</span>
                     </div>
                 </div>

@@ -336,21 +336,37 @@ function Main() {
       if (!simulatedInput || simulatedInput === "0") {
         if (value === "0") {
           return;
+        } else if (!simulatedInput && isNewInputOperator) {
+          console.log("It's I")
+          setInput("0" + value);
+
+          setCalculationArr(["0"])
+          setCalculationArr((prevArr) => [...prevArr, calcVal]);
+          return;
+        }
+        
+        if (simulatedInput === "0" && !isNewInputOperator) {
+          setInput("")
+          setInput((prevInput) => prevInput + value);
+
+          setCalculationArr([])
+          setCalculationArr((prevArr) => [...prevArr, calcVal]);
+          return;
         }
       }
       
-      if (!simulatedInput && (isNewInputOperator)) {
+      /*if (!simulatedInput && (isNewInputOperator)) {
         setInput("0" + value);
 
         setCalculationArr(["0"])
         setCalculationArr((prevArr) => [...prevArr, calcVal]);
         return;
-      }
+      }*/
       
       if (showResult) {
         if (!isStartFresh) {
           if (isContinue) {
-            if (isNewInputOperator && operators.includes(lastInput)) {
+            if (isNewInputOperator && (operators.includes(lastInput) || simulatedInput.endsWith(value))) {
               setInput((prevInput) => prevInput.slice(0, -1) + value);
   
               setCalculationArr((prevArr) => [...prevArr.slice(0, -1), calcVal]);
@@ -410,7 +426,11 @@ function Main() {
         }
       }
 
-      if (isNewInputOperator && operators.includes(lastInput)) {
+      if (isNewInputOperator && (operators.includes(lastInput) || simulatedInput.endsWith(value))) {
+        if (value === "^(-1)" && simulatedInput.endsWith(value)) {
+          return
+        }
+        
         setInput((prevInput) => prevInput.slice(0, -1) + value);
 
         setCalculationArr((prevArr) => [...prevArr.slice(0, -1), calcVal]);
