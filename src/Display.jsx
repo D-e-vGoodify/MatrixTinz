@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useEffect, useLayoutEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop, faGears, faHistory, faMoon, faPaintBrush, faSun } from '@fortawesome/free-solid-svg-icons';
 import { DarkModeContext } from './contexts/darkMode';
@@ -8,16 +8,68 @@ import { App } from '@capacitor/app';
 import { Keyboard } from '@capacitor/keyboard';
 import { IonIcon } from '@ionic/react';
 import { desktopOutline, cog, moon, brush, sunny } from 'ionicons/icons';
+import { useState } from 'react';
 
-const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, calculationArr, answer, setThemes, setHistory, setExtra, showResult, setShowResult}) => {
+const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, calculationArr, answer, systemFont, themes, setThemes, history, setHistory, extra, setExtra, showResult, setShowResult}) => {
     const root = window.document.documentElement;
     const platform = Capacitor.getPlatform();
     const isNative = platform === 'ios' || platform === 'android';
     const isWeb = platform === 'web';
     const smallScreen = window.matchMedia('(max-width: 767px)');
-    const largeFont = root.classList.contains('montserrat') || root.classList.contains('orbitron');
+    const largeFont = systemFont || root.classList.contains('orbitron');
     const { toggleDarkMode, useSystemTheme, useSystem } = useContext(DarkModeContext);
     const inputRef = useRef(null);
+    
+    const normClass = "text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-[39px] orbitron:md:text-[48px] googleSans:text-[39px] googleSans:md:text-[48px]";
+    const medClass =
+      "text-4xl md:text-5xl dotty:text-6xl dotty:md:text-7xl orbitron:text-[33px] orbitron:md:text-[39px] googleSans:text-[33px] googleSans:md:text-[39px]";
+    const smallClass = "text-3xl md:text-4xl dotty:text-5xl dotty:md:text-6xl orbitron:text-[28px] orbitron:md:text-[33px] googleSans:text-[28px] googleSans:md:text-[33px]";
+
+    const [textSizeClass, setTextSizeClass] = useState(normClass);
+
+    useLayoutEffect(() => {
+        if (!inputRef.current) return;
+        const int = inputRef.current;
+
+        const isAtEnd = int.selectionStart === (input ? input.length : 0);
+        if (isAtEnd) {
+            int.scrollLeft = int.scrollWidth;
+        }
+
+        if (showResult) {
+            setTextSizeClass(normClass)
+        } else {
+            const len = input ? input.length : 0;
+            const isOverflowing = int.scrollWidth > int.clientWidth;
+
+            if (isOverflowing) {
+                setTextSizeClass(prev => prev === normClass ? medClass : smallClass);
+            } else {
+                let thresholdLarge
+                let thresholdMed
+                if (smallScreen.matches) {
+                    thresholdLarge = largeFont ? 9 : 10;
+                    thresholdMed = largeFont ? 10 : 15;
+                } else {
+                    if (themes || history || extra) {  
+                        thresholdLarge = largeFont ? 14 : 16;
+                        thresholdMed = largeFont ? 18 : 20;
+                    } else {
+                        thresholdLarge = largeFont ? 18 : 20;
+                        thresholdMed = largeFont ? 23 : 28;
+                    }
+                }
+
+                if (len < thresholdLarge) {
+                    setTextSizeClass(normClass)
+                } else if (len < thresholdMed) {
+                    setTextSizeClass(prev => prev === smallClass ? medClass : prev);
+                }
+            }
+        }
+
+        setInputRef(inputRef)
+    }, [input, showResult, largeFont, setInputRef])
 
     useEffect(() => {
         if (inputRef.current) {
@@ -97,21 +149,6 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
         }
     }
 
-    const getDynamicTextSize = () => {
-        if (showResult) return 'text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-[39px] orbitron:md:text-[48px] googleSans:text-[39px] googleSans:md:text-[48px]';
-
-        const len = input ? input.length : 0;
-        if (smallScreen.matches) {
-            if (largeFont ? len < 10 : len < 14) return 'text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-[39px] orbitron:md:text-[48px] googleSans:text-[39px] googleSans:md:text-[48px]';
-            if (largeFont ? len < 13 : len < 16) return 'text-4xl md:text-5xl dotty:text-6xl dotty:md:text-7xl orbitron:text-[33px] orbitron:md:text-[39px] googleSans:text-[33px] googleSans:md:text-[39px]';
-            return 'text-3xl md:text-4xl dotty:text-5xl dotty:md:text-6xl orbitron:text-[28px] orbitron:md:text-[33px] googleSans:text-[28px] googleSans:md:text-[33px]';
-        } else {
-            if (largeFont ? len < 12 : len < 15) return 'text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-[39px] orbitron:md:text-[48px] googleSans:text-[39px] googleSans:md:text-[48px]';
-            if (largeFont ? len < 15 : len < 20) return 'text-4xl md:text-5xl dotty:text-6xl dotty:md:text-7xl orbitron:text-[33px] orbitron:md:text-[39px] googleSans:text-[33px] googleSans:md:text-[39px]';
-            return 'text-3xl md:text-4xl dotty:text-5xl dotty:md:text-6xl orbitron:text-[28px] orbitron:md:text-[33px] googleSans:text-[28px] googleSans:md:text-[33px]';
-        }
-    }
-
     return (
         <div className="displayBox absolute top-0 flex flex-wrap justify-center items-end w-full h-1/3 dark:text-white font-system abel:font-abel open:font-open barlow:font-barlow josefin:font-josefin montserrat:font-montserrat digital:font-digital googleSans:font-googleSans dotty:font-dotty orbitron:font-orbitron tiny:font-tiny px-4 overflow-hidden">
             <div className="history absolute top-5 left-10 text-app-darker dark:text-app-lighter text-base md:text-lg cursor-pointer">
@@ -180,8 +217,8 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
                 }
             </div>
             <div className='relative w-full h-2/3 flex items-center justify-center'>
-                <input className={`absolute w-full ${getDynamicTextSize()} outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-normal ${showResult && !isNative ? 'bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : showResult && isNative ? 'bottom-3/10 sm:bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : !showResult && !isNative ? 'bottom-[55%] md:bottom-5/10 px-2 scale-100' : 'bottom-[65%] sm:bottom-[55%] md:bottom-5/10 px-2 scale-100'} caret-app-darker dark:caret-app-lighter selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black`} inputMode="none" type="text" onKeyDown={isWeb ? disableKeyBoard : undefined} onKeyUp={handleCursorSnap} ref={inputRef} value={input || 0} onChange={(e) => setInput(e.target.value)} onClick={handleCursorSnap} readOnly={showResult} />
-                <input onMouseDown={(e) => e.preventDefault()} className={`absolute right-0 text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-4xl orbitron:md:text-5xl googleSans:text-[39px] googleSans:md:text-[48px] outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-normal ${showResult && !isNative ? 'w-full bottom-[55%] md:bottom-5/10 px-2 scale-100' : showResult && isNative ? 'w-full bottom-[65%] sm:bottom-[55%] md:bottom-5/10 px-2 scale-100' : !showResult && !isNative ? 'w-3/2 bottom-1/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300' : 'w-3/2 bottom-3/10 sm:bottom-1/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300'} border-none selection:bg-[#0F5C91] dark:selection:bg-[#85C4EE] selection:text-white dark:selection:text-black ${answer ? 'motion-translate-y-in-25' : ''} cursor-default`} value={answer} readOnly />
+                <input className={`absolute w-full ${textSizeClass} outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-normal ${showResult && !isNative ? 'bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : showResult && isNative ? 'bottom-3/10 sm:bottom-1/10 scale-[60%] md:scale-50 px-4 cursor-default text-gray-600 dark:text-gray-300' : !showResult && !isNative ? 'bottom-[55%] md:bottom-5/10 px-2 scale-100' : 'bottom-[65%] sm:bottom-[55%] md:bottom-5/10 px-2 scale-100'} caret-app-darker dark:caret-app-lighter selection:bg-app-dark dark:selection:bg-app-light selection:text-white dark:selection:text-black`} inputMode="none" type="text" onKeyDown={isWeb ? disableKeyBoard : undefined} onKeyUp={handleCursorSnap} ref={inputRef} value={input || 0} onChange={(e) => setInput(e.target.value)} onClick={handleCursorSnap} readOnly={showResult} />
+                <input onMouseDown={(e) => e.preventDefault()} className={`absolute right-0 text-5xl md:text-6xl dotty:text-7xl dotty:md:text-8xl orbitron:text-4xl orbitron:md:text-5xl googleSans:text-[39px] googleSans:md:text-[48px] outline-none text-right font-semibold origin-right transition-all duration-500 ease-in-out digital:leading-normal ${showResult && !isNative ? 'w-full bottom-[55%] md:bottom-5/10 px-2 scale-100' : showResult && isNative ? 'w-full bottom-[65%] sm:bottom-[55%] md:bottom-5/10 px-2 scale-100' : !showResult && !isNative ? 'w-3/2 bottom-1/10 md:bottom-0 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300' : 'w-3/2 bottom-3/10 sm:bottom-1/10 scale-[60%] md:scale-50 px-4 text-gray-600 dark:text-gray-300'} border-none selection:bg-[#0F5C91] dark:selection:bg-[#85C4EE] selection:text-white dark:selection:text-black ${answer ? 'motion-translate-y-in-25' : ''} cursor-default`} value={answer} readOnly />
             </div>
         </div>
     )
