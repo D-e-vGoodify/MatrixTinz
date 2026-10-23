@@ -48,15 +48,15 @@ const Display = ({input, setInput, setInputRef, getVisualLength, useDefKeys, cal
                 let thresholdLarge
                 let thresholdMed
                 if (smallScreen.matches) {
-                    thresholdLarge = largeFont ? 9 : 10;
-                    thresholdMed = largeFont ? 10 : 15;
+                    thresholdLarge = largeFont ? 9 : 9;
+                    thresholdMed = largeFont ? 10 : 12;
                 } else {
                     if (themes || history || extra) {  
-                        thresholdLarge = largeFont ? 14 : 16;
-                        thresholdMed = largeFont ? 18 : 20;
+                        thresholdLarge = largeFont ? 8 : 9;
+                        thresholdMed = largeFont ? 10 : 11;
                     } else {
-                        thresholdLarge = largeFont ? 18 : 20;
-                        thresholdMed = largeFont ? 23 : 28;
+                        thresholdLarge = largeFont ? 18 : 19;
+                        thresholdMed = largeFont ? 22 : 23;
                     }
                 }
 
