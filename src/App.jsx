@@ -675,6 +675,7 @@ function Main() {
         const tempArr = [...calculationArr];
         tempArr.splice(startIndex, deleteCount);
 
+        inputState.current =  { isAtEnd: false, cursorPos: cursorStart, scrollLeft: cursorScroll }
         setCalculationArr(tempArr);
 
         const tempStr = input.slice(0, cursorStart) + input.slice(cursorEnd);
@@ -723,6 +724,7 @@ function Main() {
 
       let newCursorPos = e === "Backspace" ? cursorStart - charsToRemove : cursorStart;
 
+      inputState.current = { isAtEnd: false, cursorPos: newCursorPos, scrollLeft: cursorScroll };
       setCalculationArr(newArr);
       setInput(newStr);
       if (inputRef && inputRef.current) inputRef.current.focus();
